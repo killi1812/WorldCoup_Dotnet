@@ -7,12 +7,12 @@ namespace FootballData.Models
     public class GroupResult
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonPropertyName("letter")]
         public string Letter { get; set; }
 
         [JsonPropertyName("ordered_teams")]
-        public List<Team> OrderedTeams { get; set; }
+        public List<TeamGroupStage> OrderedTeams { get; set; }
     }
 }

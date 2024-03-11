@@ -1,4 +1,5 @@
 using FootballData.Models.Enums;
+using FootballData.Models.ModelHelpers;
 
 namespace FootballData.Models
 
@@ -19,13 +20,13 @@ namespace FootballData.Models
         [JsonPropertyName("time")] public Time Time { get; set; }
 
         [JsonPropertyName("fifa_id")]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [JsonConverter(typeof(IntConverter))]
         public int FifaId { get; set; }
 
         [JsonPropertyName("weather")] public Weather Weather { get; set; }
 
         [JsonPropertyName("attendance")]
-        [JsonConverter(typeof(ParseStringConverter))]
+        [JsonConverter(typeof(IntConverter))]
         public int Attendance { get; set; }
 
         [JsonPropertyName("officials")] public List<string> Officials { get; set; }
@@ -63,26 +64,5 @@ namespace FootballData.Models
 
         [JsonPropertyName("last_score_update_at")]
         public DateTimeOffset? LastScoreUpdateAt { get; set; }
-    }
-
-
-    internal static class Converter
-    {
-        public static readonly JsonSerializerOptions Settings = new(JsonSerializerDefaults.General)
-        {
-            Converters =
-            {
-                TypeOfEventConverter.Singleton,
-                PositionConverter.Singleton,
-                TacticsConverter.Singleton,
-                StageNameConverter.Singleton,
-                StatusConverter.Singleton,
-                TimeConverter.Singleton,
-                WeatherDescriptionConverter.Singleton,
-                new DateOnlyConverter(),
-                new TimeOnlyConverter(),
-                IsoDateTimeOffsetConverter.Singleton
-            },
-        };
     }
 }

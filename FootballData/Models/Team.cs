@@ -6,7 +6,7 @@ namespace FootballData.Models
     public class Team
     {
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonPropertyName("country")]
         public string Country { get; set; }
@@ -18,7 +18,7 @@ namespace FootballData.Models
         public string FifaCode { get; set; }
 
         [JsonPropertyName("group_id")]
-        public long GroupId { get; set; }
+        public int GroupId { get; set; }
 
         [JsonPropertyName("group_letter")]
         public string GroupLetter { get; set; }
