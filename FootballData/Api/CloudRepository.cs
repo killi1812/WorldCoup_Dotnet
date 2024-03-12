@@ -1,8 +1,8 @@
-using FootballData.Models;
+using FootballData.Data.Models;
 
 namespace FootballData.Data;
 
-public class LocalRepository : IFootballRepository
+public class CloudRepository : IFootballRepository
 {
     public IEnumerable<Match> getMathes() => throw new NotImplementedException();
 

@@ -1,7 +1,8 @@
 using System.Text.Json;
-using FootballData.Models.Enums;
+using FootballData.Data.Enums;
+using FootballData.Data.Models;
 
-namespace FootballData.Models.ModelHelpers;
+namespace FootballData.Data.ModelHelpers;
 
 internal static class Converter
 {

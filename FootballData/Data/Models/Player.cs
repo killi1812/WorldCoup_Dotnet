@@ -1,19 +1,19 @@
 using System.Text.Json.Serialization;
-using FootballData.Models.Enums;
+using FootballData.Data.Enums;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class Player
 {
-    [JsonPropertyName("name")] 
+    [JsonPropertyName("name")]
     public string Name { get; set; }
 
-    [JsonPropertyName("captain")] 
+    [JsonPropertyName("captain")]
     public bool Captain { get; set; }
 
-    [JsonPropertyName("shirt_number")] 
+    [JsonPropertyName("shirt_number")]
     public int ShirtNumber { get; set; }
 
-    [JsonPropertyName("position")] 
+    [JsonPropertyName("position")]
     public Position Position { get; set; }
 }

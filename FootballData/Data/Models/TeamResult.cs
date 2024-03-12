@@ -1,18 +1,18 @@
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class TeamResult
 {
-    [JsonPropertyName("country")] 
+    [JsonPropertyName("country")]
     public string Country { get; set; }
 
-    [JsonPropertyName("code")] 
+    [JsonPropertyName("code")]
     public string Code { get; set; }
 
-    [JsonPropertyName("goals")] 
+    [JsonPropertyName("goals")]
     public int Goals { get; set; }
 
-    [JsonPropertyName("penalties")] 
+    [JsonPropertyName("penalties")]
     public int Penalties { get; set; }
 }

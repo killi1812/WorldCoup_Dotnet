@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models.ModelHelpers;
+namespace FootballData.Data.ModelHelpers;
 
 
 internal class IsoDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
@@ -24,7 +24,7 @@ internal class IsoDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
     public string? DateTimeFormat
     {
         get => _dateTimeFormat ?? string.Empty;
-        set => _dateTimeFormat = (string.IsNullOrEmpty(value)) ? null : value;
+        set => _dateTimeFormat = string.IsNullOrEmpty(value) ? null : value;
     }
 
     public CultureInfo Culture
@@ -67,7 +67,7 @@ internal class IsoDateTimeOffsetConverter : JsonConverter<DateTimeOffset>
         }
         else
         {
-            return default(DateTimeOffset);
+            return default;
         }
     }
 

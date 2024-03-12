@@ -1,4 +1,4 @@
-namespace FootballData.Models
+namespace FootballData.Data.Models
 {
     using System.Text.Json.Serialization;
 

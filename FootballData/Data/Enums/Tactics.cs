@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models.Enums;
+namespace FootballData.Data.Enums;
 
 public enum Tactics
 {

@@ -1,13 +1,12 @@
-using FootballData.Models.Enums;
-using FootballData.Models.ModelHelpers;
-
-namespace FootballData.Models
+namespace FootballData.Data.Models
 
 {
     using System;
     using System.Collections.Generic;
     using System.Text.Json;
     using System.Text.Json.Serialization;
+    using FootballData.Data.Enums;
+    using FootballData.Data.ModelHelpers;
 
     public class Match
     {

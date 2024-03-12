@@ -1,7 +1,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models.ModelHelpers;
+namespace FootballData.Data.ModelHelpers;
 
 internal class IntConverter : JsonConverter<int>
 {

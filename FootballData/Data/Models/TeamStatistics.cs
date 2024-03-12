@@ -1,13 +1,13 @@
 using System.Text.Json.Serialization;
-using FootballData.Models.Enums;
+using FootballData.Data.Enums;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class TeamStatistics
 {
     [JsonPropertyName("country")]
     public string Country { get; set; }
-    
+
     [JsonPropertyName("attempts_on_goal")]
     public int AttemptsOnGoal { get; set; }
 

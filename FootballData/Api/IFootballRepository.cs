@@ -1,5 +1,5 @@
 using System.Collections;
-using FootballData.Models;
+using FootballData.Data.Models;
 
 namespace FootballData.Data;
 

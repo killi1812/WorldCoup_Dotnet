@@ -2,7 +2,7 @@ using System.Globalization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public enum Status
 {

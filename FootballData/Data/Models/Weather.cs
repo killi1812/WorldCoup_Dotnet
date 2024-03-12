@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using FootballData.Models.Enums;
-using FootballData.Models.ModelHelpers;
+using FootballData.Data.Enums;
+using FootballData.Data.ModelHelpers;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class Weather
 {

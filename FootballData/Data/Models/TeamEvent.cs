@@ -1,19 +1,19 @@
 using System.Text.Json.Serialization;
-using FootballData.Models.Enums;
+using FootballData.Data.Enums;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class TeamEvent
 {
-    [JsonPropertyName("id")] 
+    [JsonPropertyName("id")]
     public int Id { get; set; }
 
-    [JsonPropertyName("type_of_event")] 
+    [JsonPropertyName("type_of_event")]
     public TypeOfEvent TypeOfEvent { get; set; }
 
-    [JsonPropertyName("player")] 
+    [JsonPropertyName("player")]
     public string Player { get; set; }
 
-    [JsonPropertyName("time")] 
+    [JsonPropertyName("time")]
     public string Time { get; set; }
 }

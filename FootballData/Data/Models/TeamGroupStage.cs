@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace FootballData.Models;
+namespace FootballData.Data.Models;
 
 public class TeamGroupStage
 {
