@@ -27,6 +27,9 @@ namespace FormGui
         private void Save_Click(object sender, EventArgs e)
         {
             //TODO submit data from form to FootbalData for saving the settings
+            var form = new MainForm();
+            form.Show();
+            Hide();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
