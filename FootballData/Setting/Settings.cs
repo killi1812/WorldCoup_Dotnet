@@ -27,11 +27,11 @@ namespace FootballData.Setting
 
     public class Settings
     {
-        public SettingsValues? Values { get; private set; } = null;
+        public SettingsValues Values { get; private set; } = null;
         private Settings()
         {
             //TODO remove mock data
-            string mockData = "Language = hr\n";
+            string mockData = "Language = hr\nLeagueGender =Male";
             Values = ParseSettings(mockData);
             //SettingsValues = ParseSettings(ReadSettingsAsync().Result);
         }
@@ -50,9 +50,18 @@ namespace FootballData.Setting
 
         private async Task<string> ReadSettingsAsync()
         {
-            //TODO mby add support fo r comments with #
             using StreamReader reader = new(FileName());
-            return await reader.ReadToEndAsync();
+            StringBuilder sb = new();
+
+            string line = await reader.ReadLineAsync();
+            while ((line = reader.ReadLine()) != null)
+            {
+                if (line.Trim()[0] == '#') continue;
+                sb.AppendLine(line);
+                line = await reader.ReadLineAsync();
+            }
+
+            return sb.ToString();
         }
         private static SettingsValues ParseSettings(string content)
         {
@@ -104,8 +113,7 @@ namespace FootballData.Setting
         {
             get
             {
-                key = key.ToLower();
-                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name.ToLower() == key);
+                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name == key);
                 if (prop == null) return "";
                 var value = prop.GetValue(Values);
                 if (value == null) return "";
@@ -113,7 +121,7 @@ namespace FootballData.Setting
             }
             set
             {
-                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name.ToLower() == key);
+                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name == key);
                 if (prop == null) return;
                 prop.SetValue(Values, key);
             }

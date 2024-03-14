@@ -6,4 +6,4 @@ var settings = Settings.GetSettings();
 
 Console.WriteLine(settings.Values);
 
-Console.WriteLine(settings["language"]);
+Console.WriteLine(settings["LeagueGender"]);
