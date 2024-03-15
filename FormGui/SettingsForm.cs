@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FormGui
 {
-    public partial class Settings : Form
+    public partial class SettingsForm : Form
     {
-        public Settings()
+        public SettingsForm()
         {
             InitializeComponent();
         }

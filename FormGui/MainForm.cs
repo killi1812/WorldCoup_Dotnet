@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace FormGui
 {
     //TODO ovo ostavlja zombije jao
     public partial class MainForm : Form
     {
+        public delegate void closeWDelagete();
+        public event closeWDelagete close_window_event;
         private Button _holdButton;
-
+        private Thread _settingsThread;
+        private ManualResetEvent _settingsEventClose = new(false);
         public MainForm()
         {
             InitializeComponent();
@@ -24,9 +29,22 @@ namespace FormGui
         {
             //TODO save to txt dat
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
+        
+        private void MainForm_Show(object sender, EventArgs e)
         {
+            _settingsThread = new Thread( (close_window_event) =>
+            {
+                //TODO ubi thread nekako
+                var form = new SettingsForm();
+                form.ShowDialog();
+                form.BringToFront();
+                form.Focus();
+                close_window_event += () => form.Close();
+            });
+
+            _settingsThread.Start();
+
+            //TODO ovo je za nista
             pnlDragOmiljeniIgraci.AllowDrop = true;
 
         }
@@ -62,5 +80,13 @@ namespace FormGui
             _holdButton = (Button)sender;
             pnlDragIgraci.Controls.Remove(_holdButton);
         }
+
+        private void close_app(object sender, EventArgs e)
+        {
+         
+            close_window_event?.Invoke();
+            Close();
+        }
+
     }
 }

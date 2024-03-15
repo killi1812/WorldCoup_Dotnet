@@ -134,7 +134,8 @@
             Controls.Add(label1);
             Name = "MainForm";
             Text = "MainForm";
-            Load += MainForm_Load;
+            Shown += MainForm_Show;
+            FormClosing += close_app;
             pnlDragIgraci.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
