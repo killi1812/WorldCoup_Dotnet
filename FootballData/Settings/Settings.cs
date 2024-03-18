@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
-namespace FootballData.Setting
+namespace FootballData.Settings
 {
     public class SettingsValues
     {

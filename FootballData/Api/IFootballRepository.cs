@@ -1,12 +1,11 @@
-using System.Collections;
 using FootballData.Data.Models;
 
-namespace FootballData.Data;
+namespace FootballData.Api;
 
 public interface IFootballRepository
 {
-    Task<IEnumerable<Match>> getMatches();
-    Task<IEnumerable<GroupResult>> getGroupResults();
-    Task<IEnumerable<Result>> getResults();
-    Task<IEnumerable<Team>> getTeams();
+    Task<IEnumerable<Match>> GetMatches();
+    Task<IEnumerable<GroupResult>> GetGroupResults();
+    Task<IEnumerable<Result>> GetResults();
+    Task<IEnumerable<Team>> GetTeams();
 }

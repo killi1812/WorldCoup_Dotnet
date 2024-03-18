@@ -2,7 +2,7 @@
 
 using FootballData.Api;
 using FootballData.Data;
-using FootballData.Setting;
+using FootballData.Settings;
 
 var settings = Settings.GetSettings();
 
@@ -11,7 +11,7 @@ var settings = Settings.GetSettings();
 Console.WriteLine(settings.Values);
 
 IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
-var matches = await repo.getGroupResults();
+var matches = await repo.GetGroupResults();
 foreach (var VARIABLE in matches)    
 {
     foreach (var team in VARIABLE.OrderedTeams)
@@ -21,16 +21,16 @@ foreach (var VARIABLE in matches)
     Console.WriteLine(VARIABLE.Letter);
 }
 
-foreach (var VARIABLE in await repo.getTeams())    
+foreach (var VARIABLE in await repo.GetTeams())    
 {
     Console.WriteLine(VARIABLE.Country);
 }
-foreach (var VARIABLE in await repo.getGroupResults())    
+foreach (var VARIABLE in await repo.GetGroupResults())    
 {
 
     Console.WriteLine(VARIABLE.Letter);
 }    
-foreach (var VARIABLE in await repo.getResults())    
+foreach (var VARIABLE in await repo.GetResults())    
 {
 
     Console.WriteLine(VARIABLE.Points);

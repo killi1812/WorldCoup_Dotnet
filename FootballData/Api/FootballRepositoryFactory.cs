@@ -1,7 +1,6 @@
-using FootballData.Api;
-using FootballData.Setting;
+using FootballData.Data;
 
-namespace FootballData.Data;
+namespace FootballData.Api;
 
 public static class FootballRepositoryFactory
 {

@@ -1,31 +1,29 @@
 using System.Text.Json;
-using FootballData.Data;
 using FootballData.Data.Models;
-using FootballData.Setting;
 
 namespace FootballData.Api;
 
 public class LocalRepository : IFootballRepository
 {
-    public async Task<IEnumerable<Match>> getMatches()
+    public async Task<IEnumerable<Match>> GetMatches()
     {
         string reader = await ReadFileAsync("matches.json");
         return JsonSerializer.Deserialize<List<Match>>(reader) ?? throw new InvalidOperationException();
     }
 
-    public async Task<IEnumerable<GroupResult>> getGroupResults()
+    public async Task<IEnumerable<GroupResult>> GetGroupResults()
     {
         string reader = await ReadFileAsync("group_results.json");
         return JsonSerializer.Deserialize<List<GroupResult>>(reader) ?? throw new InvalidOperationException();
     }
 
-    public async Task<IEnumerable<Result>> getResults()
+    public async Task<IEnumerable<Result>> GetResults()
     {
         string reader = await ReadFileAsync("results.json");
         return JsonSerializer.Deserialize<List<Result>>(reader) ?? throw new InvalidOperationException();
     }
 
-    public async Task<IEnumerable<Team>> getTeams()
+    public async Task<IEnumerable<Team>> GetTeams()
     {
         string reader = await ReadFileAsync("teams.json");
         return JsonSerializer.Deserialize<List<Team>>(reader) ?? throw new InvalidOperationException();
@@ -33,7 +31,7 @@ public class LocalRepository : IFootballRepository
 
     private async Task<string> ReadFileAsync(string fileName)
     {
-        Settings setting = Settings.GetSettings();
+        Settings.Settings setting = Settings.Settings.GetSettings();
         string name = setting.Values.DataPath == null
             ? $"{setting.Values.LeagueGender}/{fileName}"
             : $"{setting.Values.DataPath}/{setting.Values.LeagueGender}/{fileName}";
