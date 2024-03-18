@@ -5,8 +5,8 @@ namespace FootballData.Data;
 
 public interface IFootballRepository
 {
-    IEnumerable<Match> getMathes();
-    IEnumerable<GroupResult> getGroupResults();
-    IEnumerable<Result> getResults();
-    IEnumerable<Team> getTeams();
+    Task<IEnumerable<Match>> getMatches();
+    Task<IEnumerable<GroupResult>> getGroupResults();
+    Task<IEnumerable<Result>> getResults();
+    Task<IEnumerable<Team>> getTeams();
 }

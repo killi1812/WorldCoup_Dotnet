@@ -10,6 +10,8 @@ namespace FootballData.Setting
     {
         public string ConfigPath { get; set; }
 
+        public string DataPath { get; set; }
+
         public string Language { get; set; }
 
         public string LeagueGender { get; set; }
@@ -20,7 +22,7 @@ namespace FootballData.Setting
 
             foreach (var prop in GetType().GetProperties())
             {
-                sb.AppendLine($"{prop.Name}:{prop.GetValue(this)}");
+                sb.AppendLine($"{prop.Name} = {prop.GetValue(this)}");
             }
             return sb.ToString();
         }
@@ -51,17 +53,18 @@ namespace FootballData.Setting
 
         private string ReadSettings()
         {
-            if (!File.Exists(FileName()))
+            var filename = FileName();
+            if (!File.Exists(filename))
             {
-                using (StreamWriter writer = new(FileName()))
+                using (StreamWriter writer = new(filename))
                 {
                     writer.WriteLine("#This is a settings file for the FootballData application");
                 }
             }
-            StreamReader reader = new(FileName());
+            StreamReader reader = new(filename);
             StringBuilder sb = new();
 
-            string line = string.Empty;
+            string line;
             while ((line = reader.ReadLine()) != null)
             {
                 if (line == "" || line.Trim()[0] == '#') continue;
@@ -97,12 +100,13 @@ namespace FootballData.Setting
         {
             try
             {
-                string content = ReadSettings();
+                StringBuilder content = new(ReadSettings());
 
                 //TODO replace old values with new values
+                //TODO add values if they are not empty
 
-                using StreamWriter writer = new(FileName());
-                await writer.WriteAsync(content);
+                await using StreamWriter writer = new(FileName());
+                await writer.WriteAsync(Values.ToString());
             }
             catch
             {
@@ -133,7 +137,7 @@ namespace FootballData.Setting
             {
                 var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name == key);
                 if (prop == null) return;
-                prop.SetValue(Values, key);
+                prop.SetValue(Values, value);
             }
         }
     }

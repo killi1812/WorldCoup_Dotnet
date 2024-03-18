@@ -3,10 +3,9 @@ namespace FootballData.Data.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.Json;
     using System.Text.Json.Serialization;
-    using FootballData.Data.Enums;
-    using FootballData.Data.ModelHelpers;
+    using Enums;
+    using ModelHelpers;
 
     public class Match
     {

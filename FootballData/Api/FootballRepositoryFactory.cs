@@ -1,3 +1,5 @@
+using FootballData.Api;
+
 namespace FootballData.Data;
 
 public static class FootballRepositoryFactory
