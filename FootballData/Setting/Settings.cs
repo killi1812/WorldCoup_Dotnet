@@ -9,7 +9,9 @@ namespace FootballData.Setting
     public class SettingsValues
     {
         public string ConfigPath { get; set; }
+
         public string Language { get; set; }
+
         public string LeagueGender { get; set; }
 
         public override string ToString()
@@ -22,21 +24,20 @@ namespace FootballData.Setting
             }
             return sb.ToString();
         }
-
     }
 
     public class Settings
     {
-        public SettingsValues Values { get; private set; } = null;
+        public SettingsValues Values { get; private set; }
+
         private Settings()
         {
-            //TODO remove mock data
-            string mockData = "Language = hr\nLeagueGender =Male";
-            Values = ParseSettings(mockData);
-            //SettingsValues = ParseSettings(ReadSettingsAsync().Result);
+            Values = ParseSettings(ReadSettings());
         }
-        private static readonly object _oLock = new();
-        private static Settings? _settingsRepo = null;
+
+        static private readonly object _oLock = new();
+        static private Settings? _settingsRepo = null;
+
         public static Settings GetSettings()
         {
             lock (_oLock)
@@ -46,24 +47,31 @@ namespace FootballData.Setting
             }
         }
 
-        private readonly string _fileName = "worldCup.conf";
+        private const string _fileName = "worldCup.conf";
 
-        private async Task<string> ReadSettingsAsync()
+        private string ReadSettings()
         {
-            using StreamReader reader = new(FileName());
+            if (!File.Exists(FileName()))
+            {
+                using (StreamWriter writer = new(FileName()))
+                {
+                    writer.WriteLine("#This is a settings file for the FootballData application");
+                }
+            }
+            StreamReader reader = new(FileName());
             StringBuilder sb = new();
 
-            string line = await reader.ReadLineAsync();
+            string line = string.Empty;
             while ((line = reader.ReadLine()) != null)
             {
-                if (line.Trim()[0] == '#') continue;
+                if (line == "" || line.Trim()[0] == '#') continue;
                 sb.AppendLine(line);
-                line = await reader.ReadLineAsync();
             }
 
             return sb.ToString();
         }
-        private static SettingsValues ParseSettings(string content)
+
+        static private SettingsValues ParseSettings(string content)
         {
             string[] lines = content.Split('\n');
             SettingsValues settingsValues = new();
@@ -84,11 +92,12 @@ namespace FootballData.Setting
             }
             return settingsValues;
         }
+
         public async Task<bool> SaveSettingsAsync()
         {
             try
             {
-                string content = await ReadSettingsAsync();
+                string content = ReadSettings();
 
                 //TODO replace old values with new values
 
@@ -109,6 +118,7 @@ namespace FootballData.Setting
             if (path.Last() != '/') path += '/';
             return $"{path}{_fileName}";
         }
+
         public string? this[string key]
         {
             get
