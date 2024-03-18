@@ -10,10 +10,14 @@ var settings = Settings.GetSettings();
 
 Console.WriteLine(settings.Values);
 
-IFootballRepository repo = new LocalRepository();
+IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.RepositoryType);
 var matches = await repo.getGroupResults();
 foreach (var VARIABLE in matches)    
 {
+    foreach (var team in VARIABLE.OrderedTeams)
+    {
+        Console.WriteLine(team.Wins);
+    }
     Console.WriteLine(VARIABLE.Letter);
 }
 
@@ -23,9 +27,11 @@ foreach (var VARIABLE in await repo.getTeams())
 }
 foreach (var VARIABLE in await repo.getGroupResults())    
 {
+
     Console.WriteLine(VARIABLE.Letter);
 }    
 foreach (var VARIABLE in await repo.getResults())    
 {
+
     Console.WriteLine(VARIABLE.Points);
 }

@@ -5,7 +5,7 @@ namespace FootballData.Data.Models;
 public class TeamGroupStage
 {
     [JsonPropertyName("id")]
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     [JsonPropertyName("country")]
     public string Country { get; set; }
@@ -17,32 +17,32 @@ public class TeamGroupStage
     public string FifaCode { get; set; }
 
     [JsonPropertyName("group_id")]
-    public long GroupId { get; set; }
+    public int GroupId { get; set; }
 
     [JsonPropertyName("group_letter")]
     public string GroupLetter { get; set; }
 
     [JsonPropertyName("wins")]
-    public long Wins { get; set; }
+    public int Wins { get; set; }
 
     [JsonPropertyName("draws")]
-    public long Draws { get; set; }
+    public int Draws { get; set; }
 
     [JsonPropertyName("losses")]
-    public long Losses { get; set; }
+    public int Losses { get; set; }
 
     [JsonPropertyName("games_played")]
-    public long GamesPlayed { get; set; }
+    public int GamesPlayed { get; set; }
 
     [JsonPropertyName("points")]
-    public long Points { get; set; }
+    public int Points { get; set; }
 
     [JsonPropertyName("goals_for")]
-    public long GoalsFor { get; set; }
+    public int GoalsFor { get; set; }
 
     [JsonPropertyName("goals_against")]
-    public long GoalsAgainst { get; set; }
+    public int GoalsAgainst { get; set; }
 
     [JsonPropertyName("goal_differential")]
-    public long GoalDifferential { get; set; }
+    public int GoalDifferential { get; set; }
 }

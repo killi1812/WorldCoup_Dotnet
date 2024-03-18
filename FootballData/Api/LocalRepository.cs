@@ -10,8 +10,6 @@ public class LocalRepository : IFootballRepository
     public async Task<IEnumerable<Match>> getMatches()
     {
         string reader = await ReadFileAsync("matches.json");
-
-        var matches = JsonSerializer.Deserialize<List<Match>>(reader);
         return JsonSerializer.Deserialize<List<Match>>(reader) ?? throw new InvalidOperationException();
     }
 

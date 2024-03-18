@@ -16,6 +16,14 @@ namespace FootballData.Setting
 
         public string LeagueGender { get; set; }
 
+        public int RepositoryType { get; private set; }
+
+        private string Repository
+        {
+            get { return RepositoryType.ToString(); }
+            set { RepositoryType = int.Parse(value); }
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new();
