@@ -16,13 +16,7 @@ namespace FootballData.Setting
 
         public string LeagueGender { get; set; }
 
-        public int RepositoryType { get; private set; }
-
-        private string Repository
-        {
-            get { return RepositoryType.ToString(); }
-            set { RepositoryType = int.Parse(value); }
-        }
+        public int Repository { get; set; }
 
         public override string ToString()
         {
@@ -99,7 +93,18 @@ namespace FootballData.Setting
             foreach (var prop in settingsValues.GetType().GetProperties())
             {
                 if (!settingsDict.ContainsKey(prop.Name)) continue;
-                prop.SetValue(settingsValues, settingsDict[prop.Name]);
+
+                switch (prop.PropertyType.Name)
+                {
+                    case "Int32":
+                        prop.SetValue(settingsValues, int.Parse(settingsDict[prop.Name]));
+                        break;
+                    case "String":
+                        prop.SetValue(settingsValues, settingsDict[prop.Name]);
+                        break;
+                    default:
+                        throw new NotImplementedException();
+                }
             }
             return settingsValues;
         }
@@ -129,24 +134,6 @@ namespace FootballData.Setting
             if (path == null) return _fileName;
             if (path.Last() != '/') path += '/';
             return $"{path}{_fileName}";
-        }
-
-        public string? this[string key]
-        {
-            get
-            {
-                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name == key);
-                if (prop == null) return "";
-                var value = prop.GetValue(Values);
-                if (value == null) return "";
-                return value.ToString();
-            }
-            set
-            {
-                var prop = Values.GetType().GetProperties().FirstOrDefault(p => p.Name == key);
-                if (prop == null) return;
-                prop.SetValue(Values, value);
-            }
         }
     }
 }

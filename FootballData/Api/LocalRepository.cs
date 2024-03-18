@@ -34,9 +34,9 @@ public class LocalRepository : IFootballRepository
     private async Task<string> ReadFileAsync(string fileName)
     {
         Settings setting = Settings.GetSettings();
-        string name = setting["DataPath"] == null
-            ? $"{setting["LeagueGender"]}/{fileName}"
-            : $"{setting["DataPath"]}/{setting["LeagueGender"]}/{fileName}";
+        string name = setting.Values.DataPath == null
+            ? $"{setting.Values.LeagueGender}/{fileName}"
+            : $"{setting.Values.DataPath}/{setting.Values.LeagueGender}/{fileName}";
         var streamReader = new StreamReader(name);
         return await streamReader.ReadToEndAsync();
     }

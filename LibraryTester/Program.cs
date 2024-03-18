@@ -10,7 +10,7 @@ var settings = Settings.GetSettings();
 
 Console.WriteLine(settings.Values);
 
-IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.RepositoryType);
+IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
 var matches = await repo.getGroupResults();
 foreach (var VARIABLE in matches)    
 {
