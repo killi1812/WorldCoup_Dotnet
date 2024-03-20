@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
@@ -6,13 +7,18 @@ namespace FootballData.Api;
 
 public class CloudRepository : IFootballRepository
 {
-    Settings _settings = Settings.GetSettings();
+    private readonly Settings _settings = Settings.GetSettings();
 
     public async Task<IEnumerable<Match>> GetMatches()
     {
         using HttpClient client = new();
         var response =
             await client.GetAsync($"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/matches");
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid league gender");
+
+        
         return await response.Content.ReadFromJsonAsync<IEnumerable<Match>>()
                ?? throw new HttpRequestException();
     }
@@ -22,7 +28,13 @@ public class CloudRepository : IFootballRepository
         using HttpClient client = new();
         var response =
             await client.GetAsync(
-                $"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/matches/fifa_code={fifaCode}");
+                $"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/matches/country?fifa_code={fifaCode}");
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid league gender");
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid country code");
+
         return await response.Content.ReadFromJsonAsync<IEnumerable<Match>>()
                ?? throw new HttpRequestException();
     }
@@ -33,6 +45,11 @@ public class CloudRepository : IFootballRepository
         var response =
             await client.GetAsync(
                 $"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/teams/group_results");
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid league gender");
+
+        
         return await response.Content.ReadFromJsonAsync<IEnumerable<GroupResult>>()
                ?? throw new HttpRequestException();
     }
@@ -43,6 +60,11 @@ public class CloudRepository : IFootballRepository
         using HttpClient client = new();
         var response =
             await client.GetAsync($"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/teams/results");
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid league gender");
+
+        
         return await response.Content.ReadFromJsonAsync<IEnumerable<Result>>() ?? throw new HttpRequestException();
     }
 
@@ -50,6 +72,11 @@ public class CloudRepository : IFootballRepository
     {
         using HttpClient client = new();
         var response = await client.GetAsync($"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/teams");
+
+        if (response.StatusCode == HttpStatusCode.BadRequest)
+            throw new HttpRequestException("Invalid league gender");
+
+        
         return await response.Content.ReadFromJsonAsync<IEnumerable<Team>>() ?? throw new HttpRequestException();
     }
 }

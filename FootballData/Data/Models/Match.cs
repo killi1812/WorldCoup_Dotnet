@@ -9,9 +9,11 @@ namespace FootballData.Data.Models
 
     public class Match
     {
-        [JsonPropertyName("venue")] public string Venue { get; set; }
+        [JsonPropertyName("venue")] 
+        public string Venue { get; set; }
 
-        [JsonPropertyName("location")] public string Location { get; set; }
+        [JsonPropertyName("location")] 
+        public string Location { get; set; }
 
         [JsonPropertyName("status")]
         [JsonConverter(typeof(StatusConverter))]
