@@ -10,8 +10,7 @@ internal class IntConverter : JsonConverter<int>
     public override int Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
     {
         var value = reader.GetString();
-        int l;
-        if (int.TryParse(value, out l))
+        if (int.TryParse(value, out var l))
         {
             return l;
         }

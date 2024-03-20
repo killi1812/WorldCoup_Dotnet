@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FootballData.Settings
+namespace FootballData.ProjectSettings
 {
     public class SettingsValues
     {

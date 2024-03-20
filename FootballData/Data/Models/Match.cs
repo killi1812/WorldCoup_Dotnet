@@ -13,23 +13,31 @@ namespace FootballData.Data.Models
 
         [JsonPropertyName("location")] public string Location { get; set; }
 
-        [JsonPropertyName("status")] public Status Status { get; set; }
+        [JsonPropertyName("status")]
+        [JsonConverter(typeof(StatusConverter))]
+        public Status Status { get; set; }
 
-        [JsonPropertyName("time")] public Time Time { get; set; }
+        [JsonPropertyName("time")]
+        [JsonConverter(typeof(TimeConverter))]
+        public Time Time { get; set; }
 
         [JsonPropertyName("fifa_id")]
         [JsonConverter(typeof(IntConverter))]
         public int FifaId { get; set; }
 
-        [JsonPropertyName("weather")] public Weather Weather { get; set; }
+        [JsonPropertyName("weather")]
+        public Weather Weather { get; set; }
 
         [JsonPropertyName("attendance")]
         [JsonConverter(typeof(IntConverter))]
         public int Attendance { get; set; }
 
-        [JsonPropertyName("officials")] public List<string> Officials { get; set; }
+        [JsonPropertyName("officials")]
+        public List<string> Officials { get; set; }
 
-        [JsonPropertyName("stage_name")] public StageName StageName { get; set; }
+        [JsonPropertyName("stage_name")]
+        [JsonConverter(typeof(StageNameConverter))]
+        public StageName StageName { get; set; }
 
         [JsonPropertyName("home_team_country")]
         public string HomeTeamCountry { get; set; }
@@ -37,19 +45,26 @@ namespace FootballData.Data.Models
         [JsonPropertyName("away_team_country")]
         public string AwayTeamCountry { get; set; }
 
-        [JsonPropertyName("datetime")] public DateTimeOffset Datetime { get; set; }
+        [JsonPropertyName("datetime")]
+        public DateTimeOffset Datetime { get; set; }
 
-        [JsonPropertyName("winner")] public string Winner { get; set; }
+        [JsonPropertyName("winner")]
+        public string Winner { get; set; }
 
-        [JsonPropertyName("winner_code")] public string WinnerCode { get; set; }
+        [JsonPropertyName("winner_code")]
+        public string WinnerCode { get; set; }
 
-        [JsonPropertyName("home_team")] public TeamResult HomeTeamResult { get; set; }
+        [JsonPropertyName("home_team")] 
+        public TeamResult HomeTeamResult { get; set; }
 
-        [JsonPropertyName("away_team")] public TeamResult AwayTeamResult { get; set; }
+        [JsonPropertyName("away_team")] 
+        public TeamResult AwayTeamResult { get; set; }
 
-        [JsonPropertyName("home_team_events")] public List<TeamEvent> HomeTeamEvents { get; set; }
+        [JsonPropertyName("home_team_events")] 
+        public List<TeamEvent> HomeTeamEvents { get; set; }
 
-        [JsonPropertyName("away_team_events")] public List<TeamEvent> AwayTeamEvents { get; set; }
+        [JsonPropertyName("away_team_events")] 
+        public List<TeamEvent> AwayTeamEvents { get; set; }
 
         [JsonPropertyName("home_team_statistics")]
         public TeamStatistics HomeTeamStatistics { get; set; }

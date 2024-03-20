@@ -9,6 +9,7 @@ public class TeamEvent
     public int Id { get; set; }
 
     [JsonPropertyName("type_of_event")]
+    [JsonConverter(typeof(TypeOfEventConverter))]
     public TypeOfEvent TypeOfEvent { get; set; }
 
     [JsonPropertyName("player")]

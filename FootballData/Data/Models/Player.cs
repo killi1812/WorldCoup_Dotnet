@@ -15,5 +15,6 @@ public class Player
     public int ShirtNumber { get; set; }
 
     [JsonPropertyName("position")]
+    [JsonConverter(typeof(PositionConverter))]
     public Position Position { get; set; }
 }

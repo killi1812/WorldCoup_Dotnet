@@ -63,6 +63,7 @@ public class TeamStatistics
     public int? FoulsCommitted { get; set; }
 
     [JsonPropertyName("tactics")]
+    [JsonConverter(typeof(TacticsConverter))]
     public Tactics Tactics { get; set; }
 
     [JsonPropertyName("starting_eleven")]
