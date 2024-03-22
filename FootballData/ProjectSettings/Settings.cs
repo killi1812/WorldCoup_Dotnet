@@ -49,31 +49,30 @@ namespace FootballData.ProjectSettings
 
         private const string _fileName = "worldCup.conf";
 
-        private string ReadSettings()
+        private string? ReadSettings()
         {
             var filename = FileName();
             if (!File.Exists(filename))
             {
-                using (StreamWriter writer = new(filename))
-                {
-                    writer.WriteLine("#This is a settings file for the FootballData application");
-                }
+                using StreamWriter writer = new(filename);
+                writer.WriteLine("#This is a settings file for the FootballData application");
+                return null;
             }
-            StreamReader reader = new(filename);
-            StringBuilder sb = new();
-
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                if (line == "" || line.Trim()[0] == '#') continue;
-                sb.AppendLine(line);
-            }
-
-            return sb.ToString();
+            using StreamReader reader = new(filename);
+            return reader.ReadToEnd();
         }
 
-        static private SettingsValues ParseSettings(string content)
+        static private SettingsValues ParseSettings(string? content)
         {
+            if (content == null)
+                return new SettingsValues
+                {
+                    ConfigPath = "./",
+                    DataPath = "RiderProjects/OOP_dotnet_praktikum_Fran_Cvok/worldcup.sfg.io",
+                    Language = "en",
+                    LeagueGender = "men",
+                    Repository = 1,
+                };
             string[] lines = content.Split('\n');
             SettingsValues settingsValues = new();
             Dictionary<string, string> settingsDict = new();
@@ -109,11 +108,6 @@ namespace FootballData.ProjectSettings
         {
             try
             {
-                StringBuilder content = new(ReadSettings());
-
-                //TODO replace old values with new values
-                //TODO add values if they are not empty
-
                 await using StreamWriter writer = new(FileName());
                 await writer.WriteAsync(Values.ToString());
             }

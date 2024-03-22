@@ -1,10 +1,11 @@
 ﻿using FootballData.Api;
 using FootballData.Data;
+using FootballData.Data.Enums;
 using FootballData.ProjectSettings;
 
 var settings = Settings.GetSettings();
 
-settings.Values.Repository = 1;
+settings.Values.Repository = 0;
 Console.WriteLine(settings.Values);
 
 IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
@@ -16,20 +17,32 @@ while (!matches.IsCompleted)
     Console.Write(".");
     Thread.Sleep(10);
 }
-Console.WriteLine("Data received");
-
-foreach (var VARIABLE in matches.Result)
+try
 {
-    Console.WriteLine(
-        $"{VARIABLE.HomeTeamCountry} va {VARIABLE.AwayTeamCountry} in {VARIABLE.Venue} on {VARIABLE.Datetime}");
-    foreach (var team in VARIABLE.HomeTeamEvents)
+    Console.WriteLine("Data received");
+
+    foreach (var VARIABLE in matches.Result)
     {
-        Console.WriteLine($"\t{team.TypeOfEvent} : {team.Player}");
+        Console.WriteLine(
+            $"{VARIABLE.HomeTeamCountry} va {VARIABLE.AwayTeamCountry} in {VARIABLE.Venue} ({VARIABLE.Attendance})");
+        foreach (var team in VARIABLE.HomeTeamEvents.Where(e => e.TypeOfEvent == TypeOfEvent.RedCard))
+        {
+            Console.WriteLine($"\t{team.TypeOfEvent} : {team.Player}");
+        }
+        foreach (var team in VARIABLE.AwayTeamEvents.Where(e => e.TypeOfEvent == TypeOfEvent.RedCard))
+        {
+            Console.WriteLine($"\t{team.TypeOfEvent} : {team.Player}");
+        }
     }
-    foreach (var team in VARIABLE.AwayTeamEvents)
-    {
-        Console.WriteLine($"\t{team.TypeOfEvent} : {team.Player}");
-    }
+}
+catch (Exception e)
+{
+    Console.WriteLine(e);
+}
+finally
+{
+    var a = await settings.SaveSettingsAsync();
+    Console.WriteLine(a);
 }
 
 // foreach (var VARIABLE in await repo.GetTeams())
