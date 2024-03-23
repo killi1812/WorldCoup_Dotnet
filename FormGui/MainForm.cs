@@ -20,6 +20,8 @@ namespace FormGui
     {
         private Button _holdButton;
         private IFootballRepository repo;
+        private bool _loding = false;
+        private string _selectedTeam;
         public event EventHandler<EventArgs> fetchData;
 
         public MainForm()
@@ -87,11 +89,27 @@ namespace FormGui
 
         private async void fetchTeams(object sender, EventArgs e)
         {
-            cmbRep.Items.Clear();
-            Settings settings = Settings.GetSettings();
-            repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
-            IEnumerable<string> teamCodes = (await repo.GetTeams()).Select(t => t.FifaCode).Order();
-            cmbRep.Items.AddRange(teamCodes.ToArray());
+            _loding = true;
+            try
+            {
+                cmbRep.Items.Clear();
+                Settings settings = Settings.GetSettings();
+                repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
+                IEnumerable<string> teamCodes = (await repo.GetTeams()).Select(t => t.FifaCode).Order();
+                cmbRep.Items.AddRange(teamCodes.ToArray());
+                throw new NotImplementedException();
+            }
+            catch (Exception err)
+            {
+
+                using Form form = new ErrorForm(err.Message);
+                form.ShowDialog();
+            }
+            finally
+            {
+                _loding = false;
+            }
+
         }
 
         private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
