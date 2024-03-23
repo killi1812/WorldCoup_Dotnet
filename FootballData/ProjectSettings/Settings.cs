@@ -14,6 +14,7 @@ namespace FootballData.ProjectSettings
 
         public int Repository { get; set; }
 
+        public string FavoritTimeFifaCode { get; set; }
         public override string ToString()
         {
             StringBuilder sb = new();

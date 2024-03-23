@@ -85,6 +85,9 @@ namespace FormGui
         {
             fetchData += fetchTeams;
             fetchData.Invoke(this, EventArgs.Empty);
+            Settings settings = Settings.GetSettings();
+            if (!String.IsNullOrEmpty(settings.Values.FavoritTimeFifaCode))
+                cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
         }
 
         private async void fetchTeams(object sender, EventArgs e)
@@ -97,12 +100,11 @@ namespace FormGui
                 repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
                 IEnumerable<string> teamCodes = (await repo.GetTeams()).Select(t => t.FifaCode).Order();
                 cmbRep.Items.AddRange(teamCodes.ToArray());
-                throw new NotImplementedException();
             }
             catch (Exception err)
             {
 
-                using Form form = new ErrorForm(err.Message);
+                using Form form = new Error(err.Message);
                 form.ShowDialog();
             }
             finally
@@ -127,6 +129,14 @@ namespace FormGui
             {
                 fetchData.Invoke(this, EventArgs.Empty);
             }
+        }
+
+        private void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Settings settings = Settings.GetSettings();
+            string teamCode = cmbRep.SelectedItem.ToString();
+            _selectedTeam = teamCode;
+            settings.Values.FavoritTimeFifaCode = teamCode;
         }
     }
 }

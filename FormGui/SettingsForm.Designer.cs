@@ -152,8 +152,15 @@
             Controls.Add(groupGender);
             Controls.Add(groupLang);
             Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
+            MinimizeBox = false;
             Name = "SettingsForm";
+            ShowIcon = false;
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Settings";
+            TopMost = true;
             Load += Settings_Load;
             groupLang.ResumeLayout(false);
             groupLang.PerformLayout();
