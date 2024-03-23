@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FootballData.Api;
+using FootballData.Data.Models;
+using FootballData.ProjectSettings;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +18,10 @@ namespace FormGui
     //TODO ovo ostavlja zombije jao
     public partial class MainForm : Form
     {
-        public delegate void closeWDelagete();
-        public event closeWDelagete close_window_event;
         private Button _holdButton;
-        private Thread _settingsThread;
-        private ManualResetEvent _settingsEventClose = new(false);
+        private IFootballRepository repo;
+        public event EventHandler<EventArgs> fetchData;
+
         public MainForm()
         {
             InitializeComponent();
@@ -29,20 +31,16 @@ namespace FormGui
         {
             //TODO save to txt dat
         }
-        
+
         private void MainForm_Show(object sender, EventArgs e)
         {
-            _settingsThread = new Thread( (close_window_event) =>
-            {
-                //TODO ubi thread nekako
-                var form = new SettingsForm();
-                form.ShowDialog();
-                form.BringToFront();
-                form.Focus();
-                close_window_event += () => form.Close();
-            });
 
-            _settingsThread.Start();
+            Settings settings = Settings.GetSettings();
+            if (settings.IsNew)
+            {
+                SettingsForm settingsForm = new();
+                settingsForm.ShowDialog();
+            }
 
             //TODO ovo je za nista
             pnlDragOmiljeniIgraci.AllowDrop = true;
@@ -59,7 +57,7 @@ namespace FormGui
         {
             _holdButton = (Button)sender;
             pnlDragIgraci.Controls.Remove(_holdButton);
-            
+
             pnlDragOmiljeniIgraci.DragDrop += (obj, e) =>
             {
                 pnlDragOmiljeniIgraci.Controls.Add(_holdButton);
@@ -81,12 +79,36 @@ namespace FormGui
             pnlDragIgraci.Controls.Remove(_holdButton);
         }
 
-        private void close_app(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
         {
-         
-            close_window_event?.Invoke();
-            Close();
+            fetchData += fetchTeams;
+            fetchData.Invoke(this, EventArgs.Empty);
         }
 
+        private async void fetchTeams(object sender, EventArgs e)
+        {
+            cmbRep.Items.Clear();
+            Settings settings = Settings.GetSettings();
+            repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
+            IEnumerable<string> teamCodes = (await repo.GetTeams()).Select(t => t.FifaCode).Order();
+            cmbRep.Items.AddRange(teamCodes.ToArray());
+        }
+
+        private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fetchData.Invoke(this, EventArgs.Empty);
+            Settings settings = Settings.GetSettings();
+            await settings.SaveSettingsAsync();
+        }
+
+        private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new();
+            var response = settingsForm.ShowDialog();
+            if (response == DialogResult.OK)
+            {
+                fetchData.Invoke(this, EventArgs.Empty);
+            }
+        }
     }
 }

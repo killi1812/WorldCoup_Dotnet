@@ -29,6 +29,7 @@ namespace FootballData.ProjectSettings
     public class Settings
     {
         public SettingsValues Values { get; private set; }
+        public bool IsNew { get; private set; } = false;
 
         private Settings()
         {
@@ -54,8 +55,7 @@ namespace FootballData.ProjectSettings
             var filename = FileName();
             if (!File.Exists(filename))
             {
-                using StreamWriter writer = new(filename);
-                writer.WriteLine("#This is a settings file for the FootballData application");
+                IsNew = true;
                 return null;
             }
             using StreamReader reader = new(filename);

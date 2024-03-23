@@ -73,7 +73,7 @@ public class CloudRepository : IFootballRepository
         using HttpClient client = new();
         var response = await client.GetAsync($"https://worldcup-vua.nullbit.hr/{_settings.Values.LeagueGender}/teams");
 
-        if (response.StatusCode == HttpStatusCode.BadRequest)
+            if (response.StatusCode == HttpStatusCode.BadRequest)
             throw new HttpRequestException("Invalid league gender");
 
         
