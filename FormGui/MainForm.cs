@@ -49,6 +49,7 @@ namespace FormGui
 
         private async Task LoadPlayers()
         {
+            pnlIgraci.Controls.Clear();
             //TODO ovo zbog nekog retardiranog razloga zamo pokazuje 4 igraca majku im jebem
             var players = await getPlayers();
             if (players == null)
@@ -69,7 +70,7 @@ namespace FormGui
                 //button.Click += PlayerButton_Click;
                 labels.Add(lbl);
             }
-            tabPage1.Controls.AddRange(labels.ToArray());
+            pnlIgraci.Controls.AddRange(labels.ToArray());
 
         }
 

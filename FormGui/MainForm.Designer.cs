@@ -29,45 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            pnlIgraci = new FlowLayoutPanel();
-            tabPage2 = new TabPage();
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             saveSettingsToolStripMenuItem = new ToolStripMenuItem();
             cmbRep = new ToolStripComboBox();
-            tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
+            pnlIgraci = new FlowLayoutPanel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            resources.ApplyResources(tabControl1, "tabControl1");
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
-            tabControl1.Name = "tabControl1";
-            tabControl1.SelectedIndex = 0;
-            // 
-            // tabPage1
-            // 
-            resources.ApplyResources(tabPage1, "tabPage1");
-            tabPage1.Controls.Add(pnlIgraci);
-            tabPage1.Name = "tabPage1";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // pnlIgraci
-            // 
-            resources.ApplyResources(pnlIgraci, "pnlIgraci");
-            pnlIgraci.Name = "pnlIgraci";
-            // 
-            // tabPage2
-            // 
-            resources.ApplyResources(tabPage2, "tabPage2");
-            tabPage2.Name = "tabPage2";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -102,18 +71,21 @@
             cmbRep.Sorted = true;
             cmbRep.SelectedIndexChanged += cmbRep_SelectedIndexChanged;
             // 
+            // pnlIgraci
+            // 
+            resources.ApplyResources(pnlIgraci, "pnlIgraci");
+            pnlIgraci.Name = "pnlIgraci";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(pnlIgraci);
             Controls.Add(menuStrip1);
-            Controls.Add(tabControl1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Load += MainForm_Load;
             Shown += MainForm_Show;
-            tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -121,9 +93,6 @@
         }
 
         #endregion
-        private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TabPage tabPage2;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem openSettingsToolStripMenuItem;

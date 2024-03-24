@@ -13,6 +13,6 @@ namespace FootballData.Data.Models
         public string Letter { get; set; }
 
         [JsonPropertyName("ordered_teams")]
-        public List<TeamGroupStage> OrderedTeams { get; set; }
+        public List<Result> OrderedTeamsResaults { get; set; }
     }
 }
