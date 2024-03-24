@@ -8,7 +8,7 @@ public class TeamResult
     public string Country { get; set; }
 
     [JsonPropertyName("code")]
-    public string Code { get; set; }
+    public string FifaCode { get; set; }
 
     [JsonPropertyName("goals")]
     public int Goals { get; set; }

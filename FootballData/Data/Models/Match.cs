@@ -54,7 +54,7 @@ namespace FootballData.Data.Models
         public string Winner { get; set; }
 
         [JsonPropertyName("winner_code")]
-        public string WinnerCode { get; set; }
+        public string WinnerFifaCode { get; set; }
 
         [JsonPropertyName("home_team")] 
         public TeamResult HomeTeamResult { get; set; }

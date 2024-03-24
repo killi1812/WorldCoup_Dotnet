@@ -16,7 +16,7 @@ public class LocalRepository : IFootballRepository
     {
         string reader = await ReadFileAsync("matches.json");
         var matches = JsonSerializer.Deserialize<IEnumerable<Match>>(reader) ?? throw new InvalidOperationException();
-        return matches.Where(m => m.WinnerCode == fifaCode);
+        return matches.Where(m => m.WinnerFifaCode == fifaCode);
     }
 
     public async Task<IEnumerable<GroupResult>> GetGroupResults()

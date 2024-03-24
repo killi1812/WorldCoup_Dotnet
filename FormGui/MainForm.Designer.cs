@@ -29,65 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
-            pnlDragOmiljeniIgraci = new FlowLayoutPanel();
-            pnlDragIgraci = new FlowLayoutPanel();
-            Igrac = new Button();
-            label5 = new Label();
-            label6 = new Label();
-            panel1 = new Panel();
-            label2 = new Label();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            pnlIgraci = new FlowLayoutPanel();
             tabPage2 = new TabPage();
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             saveSettingsToolStripMenuItem = new ToolStripMenuItem();
             cmbRep = new ToolStripComboBox();
-            pnlDragIgraci.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // pnlDragOmiljeniIgraci
-            // 
-            resources.ApplyResources(pnlDragOmiljeniIgraci, "pnlDragOmiljeniIgraci");
-            pnlDragOmiljeniIgraci.Name = "pnlDragOmiljeniIgraci";
-            // 
-            // pnlDragIgraci
-            // 
-            resources.ApplyResources(pnlDragIgraci, "pnlDragIgraci");
-            pnlDragIgraci.Controls.Add(Igrac);
-            pnlDragIgraci.Name = "pnlDragIgraci";
-            // 
-            // Igrac
-            // 
-            resources.ApplyResources(Igrac, "Igrac");
-            Igrac.Name = "Igrac";
-            Igrac.UseVisualStyleBackColor = true;
-            Igrac.Click += Igrac_Click;
-            Igrac.MouseDown += Igrac_MouseDown;
-            // 
-            // label5
-            // 
-            resources.ApplyResources(label5, "label5");
-            label5.Name = "label5";
-            // 
-            // label6
-            // 
-            resources.ApplyResources(label6, "label6");
-            label6.Name = "label6";
-            // 
-            // panel1
-            // 
-            resources.ApplyResources(panel1, "panel1");
-            panel1.Name = "panel1";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(label2, "label2");
-            label2.Name = "label2";
             // 
             // tabControl1
             // 
@@ -100,14 +54,14 @@
             // tabPage1
             // 
             resources.ApplyResources(tabPage1, "tabPage1");
-            tabPage1.Controls.Add(pnlDragIgraci);
-            tabPage1.Controls.Add(label5);
-            tabPage1.Controls.Add(panel1);
-            tabPage1.Controls.Add(label2);
-            tabPage1.Controls.Add(pnlDragOmiljeniIgraci);
-            tabPage1.Controls.Add(label6);
+            tabPage1.Controls.Add(pnlIgraci);
             tabPage1.Name = "tabPage1";
             tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pnlIgraci
+            // 
+            resources.ApplyResources(pnlIgraci, "pnlIgraci");
+            pnlIgraci.Name = "pnlIgraci";
             // 
             // tabPage2
             // 
@@ -158,10 +112,8 @@
             Name = "MainForm";
             Load += MainForm_Load;
             Shown += MainForm_Show;
-            pnlDragIgraci.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -169,13 +121,6 @@
         }
 
         #endregion
-        private FlowLayoutPanel pnlDragOmiljeniIgraci;
-        private FlowLayoutPanel pnlDragIgraci;
-        private Label label5;
-        private Label label6;
-        private Button Igrac;
-        private Panel panel1;
-        private Label label2;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -184,5 +129,6 @@
         private ToolStripMenuItem openSettingsToolStripMenuItem;
         private ToolStripMenuItem saveSettingsToolStripMenuItem;
         private ToolStripComboBox cmbRep;
+        private FlowLayoutPanel pnlIgraci;
     }
 }

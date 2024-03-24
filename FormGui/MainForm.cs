@@ -20,23 +20,16 @@ namespace FormGui
     {
         private Button _holdButton;
         private IFootballRepository repo;
-        private bool _loding = false;
-        private string _selectedTeam;
-        public event EventHandler<EventArgs> fetchData;
+        private bool _loading = false;
+        public IEnumerable<string> teams { get; set; }
 
         public MainForm()
         {
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //TODO save to txt dat
-        }
-
         private void MainForm_Show(object sender, EventArgs e)
         {
-
             Settings settings = Settings.GetSettings();
             if (settings.IsNew)
             {
@@ -44,62 +37,59 @@ namespace FormGui
                 settingsForm.ShowDialog();
             }
 
-            //TODO ovo je za nista
-            pnlDragOmiljeniIgraci.AllowDrop = true;
-
         }
 
-        private void Igrac_Click(object sender, EventArgs e)
+        //TODO ovo je nesto neznam kj radi };
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            //TODO detali igraca
-            throw new NotImplementedException();
+            await LoadTeams();
+            if (cmbRep.SelectedIndex != 0)
+               await LoadPlayers();
         }
-        //TODO ovo je nesto neznam kj radi
-        private void Igrac_MouseDown(object sender, MouseEventArgs e)
-        {
-            _holdButton = (Button)sender;
-            pnlDragIgraci.Controls.Remove(_holdButton);
 
-            pnlDragOmiljeniIgraci.DragDrop += (obj, e) =>
+        private async Task LoadPlayers()
+        {
+            //TODO ovo zbog nekog retardiranog razloga zamo pokazuje 4 igraca majku im jebem
+            var players = await getPlayers();
+            if (players == null)
             {
-                pnlDragOmiljeniIgraci.Controls.Add(_holdButton);
-            };
-
-            Controls.Add(_holdButton);
-            _holdButton.BringToFront();
-            _holdButton.MouseMove += (sender, e) =>
+                return;
+            }
+            List<Label> labels = new();
+            int loactionY = 10;
+            foreach (var player in players)
             {
-                var point = PointToClient(MousePosition);
-                point.X -= _holdButton.Width / 2;
-                point.Y -= _holdButton.Height / 2;
-                _holdButton.Location = point;
-            };
-        }
-        private void igrac_MouseUp(object sender, MouseEventArgs e)
-        {
-            _holdButton = (Button)sender;
-            pnlDragIgraci.Controls.Remove(_holdButton);
+                Label lbl = new()
+                {
+                    Text = player.Name,
+                    Tag = player,
+                    AutoSize = true,
+                    Location = new Point(10, loactionY+=20)
+                };
+                //button.Click += PlayerButton_Click;
+                labels.Add(lbl);
+            }
+            tabPage1.Controls.AddRange(labels.ToArray());
+
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async Task LoadTeams()
         {
-            fetchData += fetchTeams;
-            fetchData.Invoke(this, EventArgs.Empty);
+            var teams = await fetchTeams();
+            cmbRep.Items.AddRange(teams.ToArray());
             Settings settings = Settings.GetSettings();
-            if (!String.IsNullOrEmpty(settings.Values.FavoritTimeFifaCode))
-                cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
+            cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
         }
 
-        private async void fetchTeams(object sender, EventArgs e)
+        private async Task<IOrderedEnumerable<string>> fetchTeams()
         {
-            _loding = true;
+            _loading = true;
             try
             {
                 cmbRep.Items.Clear();
                 Settings settings = Settings.GetSettings();
                 repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
-                IEnumerable<string> teamCodes = (await repo.GetTeams()).Select(t => t.FifaCode).Order();
-                cmbRep.Items.AddRange(teamCodes.ToArray());
+                return (await repo.GetTeams()).Select(t => t.FifaCode).Order();
             }
             catch (Exception err)
             {
@@ -109,25 +99,49 @@ namespace FormGui
             }
             finally
             {
-                _loding = false;
+                _loading = false;
+            }
+            return null;
+        }
+
+        private async Task<IOrderedEnumerable<Player>> getPlayers()
+        {
+            if (cmbRep.SelectedItem == null)
+            {
+                return null;
             }
 
+            IEnumerable<Match> matches = await repo.GetMatchesByCountry(cmbRep.SelectedItem.ToString());
+            IOrderedEnumerable<Player> players = matches
+                .Where(m => m.HomeTeamResult.FifaCode == cmbRep.SelectedItem.ToString())
+                .Select(m => m.HomeTeamStatistics)
+                .SelectMany(s => s.StartingEleven.Concat(s.Substitutes))
+                .Union(
+                    matches.Where(m => m.AwayTeamResult.FifaCode == cmbRep.SelectedItem.ToString())
+                    .Select(m => m.AwayTeamStatistics)
+                    .SelectMany(s => s.StartingEleven.Concat(s.Substitutes))
+                    )
+                .DistinctBy(p => p.ShirtNumber)
+                .OrderBy(p => p.Name);
+            return players;
+
         }
+
 
         private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fetchData.Invoke(this, EventArgs.Empty);
             Settings settings = Settings.GetSettings();
             await settings.SaveSettingsAsync();
+            await LoadTeams();
         }
 
-        private void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SettingsForm settingsForm = new();
             var response = settingsForm.ShowDialog();
             if (response == DialogResult.OK)
             {
-                fetchData.Invoke(this, EventArgs.Empty);
+                await LoadTeams();
             }
         }
 
@@ -135,8 +149,8 @@ namespace FormGui
         {
             Settings settings = Settings.GetSettings();
             string teamCode = cmbRep.SelectedItem.ToString();
-            _selectedTeam = teamCode;
             settings.Values.FavoritTimeFifaCode = teamCode;
+            LoadPlayers();
         }
     }
 }
