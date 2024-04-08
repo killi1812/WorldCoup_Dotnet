@@ -34,7 +34,7 @@
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             saveSettingsToolStripMenuItem = new ToolStripMenuItem();
             cmbRep = new ToolStripComboBox();
-            pnlIgraci = new FlowLayoutPanel();
+            pnlMajmuni = new FlowLayoutPanel();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -71,16 +71,18 @@
             cmbRep.Sorted = true;
             cmbRep.SelectedIndexChanged += cmbRep_SelectedIndexChanged;
             // 
-            // pnlIgraci
+            // pnlMajmuni
             // 
-            resources.ApplyResources(pnlIgraci, "pnlIgraci");
-            pnlIgraci.Name = "pnlIgraci";
+            resources.ApplyResources(pnlMajmuni, "pnlMajmuni");
+            pnlMajmuni.BackColor = SystemColors.ActiveCaption;
+            pnlMajmuni.BorderStyle = BorderStyle.Fixed3D;
+            pnlMajmuni.Name = "pnlMajmuni";
             // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(pnlIgraci);
+            Controls.Add(pnlMajmuni);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
@@ -98,6 +100,6 @@
         private ToolStripMenuItem openSettingsToolStripMenuItem;
         private ToolStripMenuItem saveSettingsToolStripMenuItem;
         private ToolStripComboBox cmbRep;
-        private FlowLayoutPanel pnlIgraci;
+        private FlowLayoutPanel pnlMajmuni;
     }
 }

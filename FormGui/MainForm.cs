@@ -26,6 +26,8 @@ namespace FormGui
         public MainForm()
         {
             InitializeComponent();
+            Form f = new Form1();
+            f.Show();
         }
 
         private void MainForm_Show(object sender, EventArgs e)
@@ -44,20 +46,19 @@ namespace FormGui
         {
             await LoadTeams();
             if (cmbRep.SelectedIndex != 0)
-               await LoadPlayers();
+                await LoadPlayers();
         }
 
         private async Task LoadPlayers()
         {
-            pnlIgraci.Controls.Clear();
-            //TODO ovo zbog nekog retardiranog razloga zamo pokazuje 4 igraca majku im jebem
+
+            //pnlIgraci.Controls.Clear();
             var players = await getPlayers();
             if (players == null)
             {
                 return;
             }
-            List<Label> labels = new();
-            int loactionY = 10;
+            List<Label> list = new List<Label>();
             foreach (var player in players)
             {
                 Label lbl = new()
@@ -65,12 +66,11 @@ namespace FormGui
                     Text = player.Name,
                     Tag = player,
                     AutoSize = true,
-                    Location = new Point(10, loactionY+=20)
                 };
+                list.Add(lbl);
                 //button.Click += PlayerButton_Click;
-                labels.Add(lbl);
             }
-            pnlIgraci.Controls.AddRange(labels.ToArray());
+            //pnlIgraci. .Controls.AddRange(labels.ToArray());
 
         }
 
