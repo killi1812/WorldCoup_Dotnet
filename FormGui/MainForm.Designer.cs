@@ -29,14 +29,38 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            splitContainer1 = new SplitContainer();
+            pnlIgraci = new FlowLayoutPanel();
             menuStrip1 = new MenuStrip();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             saveSettingsToolStripMenuItem = new ToolStripMenuItem();
             cmbRep = new ToolStripComboBox();
-            pnlMajmuni = new FlowLayoutPanel();
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
+            splitContainer1.Panel2.SuspendLayout();
+            splitContainer1.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            resources.ApplyResources(splitContainer1, "splitContainer1");
+            splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            resources.ApplyResources(splitContainer1.Panel1, "splitContainer1.Panel1");
+            // 
+            // splitContainer1.Panel2
+            // 
+            resources.ApplyResources(splitContainer1.Panel2, "splitContainer1.Panel2");
+            splitContainer1.Panel2.Controls.Add(pnlIgraci);
+            // 
+            // pnlIgraci
+            // 
+            resources.ApplyResources(pnlIgraci, "pnlIgraci");
+            pnlIgraci.BackColor = SystemColors.ActiveCaption;
+            pnlIgraci.Name = "pnlIgraci";
             // 
             // menuStrip1
             // 
@@ -71,23 +95,19 @@
             cmbRep.Sorted = true;
             cmbRep.SelectedIndexChanged += cmbRep_SelectedIndexChanged;
             // 
-            // pnlMajmuni
-            // 
-            resources.ApplyResources(pnlMajmuni, "pnlMajmuni");
-            pnlMajmuni.BackColor = SystemColors.ActiveCaption;
-            pnlMajmuni.BorderStyle = BorderStyle.Fixed3D;
-            pnlMajmuni.Name = "pnlMajmuni";
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(pnlMajmuni);
+            Controls.Add(splitContainer1);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "MainForm";
             Load += MainForm_Load;
             Shown += MainForm_Show;
+            splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
+            splitContainer1.ResumeLayout(false);
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -100,6 +120,7 @@
         private ToolStripMenuItem openSettingsToolStripMenuItem;
         private ToolStripMenuItem saveSettingsToolStripMenuItem;
         private ToolStripComboBox cmbRep;
-        private FlowLayoutPanel pnlMajmuni;
+        private FlowLayoutPanel pnlIgraci;
+        private SplitContainer splitContainer1;
     }
 }

@@ -34,6 +34,12 @@
             btnSelectedRight = new Button();
             BtnAllLeft = new Button();
             btnOneLeft = new Button();
+            menuStrip1 = new MenuStrip();
+            toolStripMenuItem1 = new ToolStripMenuItem();
+            openSettingsToolStripMenuItem = new ToolStripMenuItem();
+            saveSettingsToolStripMenuItem = new ToolStripMenuItem();
+            cmbRep = new ToolStripComboBox();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlIgraci
@@ -41,7 +47,7 @@
             pnlIgraci.AutoScroll = true;
             pnlIgraci.BorderStyle = BorderStyle.Fixed3D;
             pnlIgraci.FlowDirection = FlowDirection.TopDown;
-            pnlIgraci.Location = new Point(128, 12);
+            pnlIgraci.Location = new Point(165, 117);
             pnlIgraci.Name = "pnlIgraci";
             pnlIgraci.Size = new Size(175, 426);
             pnlIgraci.TabIndex = 0;
@@ -52,7 +58,7 @@
             pnlFavorite.AutoScroll = true;
             pnlFavorite.BorderStyle = BorderStyle.Fixed3D;
             pnlFavorite.FlowDirection = FlowDirection.TopDown;
-            pnlFavorite.Location = new Point(500, 12);
+            pnlFavorite.Location = new Point(537, 117);
             pnlFavorite.Name = "pnlFavorite";
             pnlFavorite.Size = new Size(175, 426);
             pnlFavorite.TabIndex = 1;
@@ -60,7 +66,7 @@
             // 
             // btnAllRight
             // 
-            btnAllRight.Location = new Point(363, 120);
+            btnAllRight.Location = new Point(400, 225);
             btnAllRight.Name = "btnAllRight";
             btnAllRight.Size = new Size(75, 23);
             btnAllRight.TabIndex = 2;
@@ -70,7 +76,7 @@
             // 
             // btnSelectedRight
             // 
-            btnSelectedRight.Location = new Point(363, 149);
+            btnSelectedRight.Location = new Point(400, 254);
             btnSelectedRight.Name = "btnSelectedRight";
             btnSelectedRight.Size = new Size(75, 23);
             btnSelectedRight.TabIndex = 4;
@@ -80,7 +86,7 @@
             // 
             // BtnAllLeft
             // 
-            BtnAllLeft.Location = new Point(363, 231);
+            BtnAllLeft.Location = new Point(400, 336);
             BtnAllLeft.Name = "BtnAllLeft";
             BtnAllLeft.Size = new Size(75, 23);
             BtnAllLeft.TabIndex = 6;
@@ -90,7 +96,7 @@
             // 
             // btnOneLeft
             // 
-            btnOneLeft.Location = new Point(363, 202);
+            btnOneLeft.Location = new Point(400, 307);
             btnOneLeft.Name = "btnOneLeft";
             btnOneLeft.Size = new Size(75, 23);
             btnOneLeft.TabIndex = 5;
@@ -98,21 +104,65 @@
             btnOneLeft.UseVisualStyleBackColor = true;
             btnOneLeft.Click += btnOneLeft_Click;
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, cmbRep });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(887, 27);
+            menuStrip1.TabIndex = 7;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // toolStripMenuItem1
+            // 
+            toolStripMenuItem1.DropDownItems.AddRange(new ToolStripItem[] { openSettingsToolStripMenuItem, saveSettingsToolStripMenuItem });
+            toolStripMenuItem1.Name = "toolStripMenuItem1";
+            toolStripMenuItem1.Size = new Size(61, 23);
+            toolStripMenuItem1.Text = "Settings";
+            // 
+            // openSettingsToolStripMenuItem
+            // 
+            openSettingsToolStripMenuItem.Name = "openSettingsToolStripMenuItem";
+            openSettingsToolStripMenuItem.Size = new Size(148, 22);
+            openSettingsToolStripMenuItem.Text = "Open Settings";
+            openSettingsToolStripMenuItem.Click += openSettingsToolStripMenuItem_Click;
+            // 
+            // saveSettingsToolStripMenuItem
+            // 
+            saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            saveSettingsToolStripMenuItem.Size = new Size(148, 22);
+            saveSettingsToolStripMenuItem.Text = "Save Settings";
+            saveSettingsToolStripMenuItem.Click += saveSettingsToolStripMenuItem_Click;
+            // 
+            // cmbRep
+            // 
+            cmbRep.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbRep.Name = "cmbRep";
+            cmbRep.Size = new Size(106, 23);
+            cmbRep.Sorted = true;
+            cmbRep.Click += cmbRep_SelectedIndexChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(887, 602);
             Controls.Add(BtnAllLeft);
             Controls.Add(btnOneLeft);
             Controls.Add(btnSelectedRight);
             Controls.Add(btnAllRight);
             Controls.Add(pnlFavorite);
             Controls.Add(pnlIgraci);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
+            Load += MainForm_Load;
+            Shown += MainForm_Show;
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -123,5 +173,10 @@
         private Button btnSelectedRight;
         private Button BtnAllLeft;
         private Button btnOneLeft;
+        private MenuStrip menuStrip1;
+        private ToolStripComboBox cmbRep;
+        private ToolStripMenuItem toolStripMenuItem1;
+        private ToolStripMenuItem openSettingsToolStripMenuItem;
+        private ToolStripMenuItem saveSettingsToolStripMenuItem;
     }
 }
