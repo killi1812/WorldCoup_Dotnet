@@ -1,16 +1,8 @@
 ﻿using FootballData.Api;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FormGui
 {
@@ -23,12 +15,45 @@ namespace FormGui
         }
         private IFootballRepository repo;
         private List<Label> selectedLabels = new List<Label>();
+        private Label? HoldingLabel = null;
         private bool _loading = false;
         public IEnumerable<string> teams { get; set; }
 
-        private async void LoadPlayers()
+        private async Task LoadPlayers()
         {
+            pnlIgraci.Controls.Clear();
+            pnlFavorite.Controls.Clear();
+            selectedLabels.Clear();
+            //drag and drop stuff 
+            //GRDO
+            //TODO napraviti da radi na listi ne samo jednom labelu
+            pnlFavorite.AllowDrop = true;
+            pnlIgraci.AllowDrop = true;
+            pnlFavorite.DragEnter += (obj, ev) =>
+            {
+                if (HoldingLabel == null || pnlFavorite.Controls.Contains(HoldingLabel)) return;
+                ev.Effect = DragDropEffects.Move;
+            };
+            pnlIgraci.DragEnter += (obj, ev) =>
+            {
+                if (HoldingLabel == null || pnlIgraci.Controls.Contains(HoldingLabel)) return;
+                ev.Effect = DragDropEffects.Move;
+            };
+
+            pnlIgraci.DragDrop += (obj, ev) =>
+            {
+                pnlFavorite.Controls.Remove(HoldingLabel);
+                pnlIgraci.Controls.Add(HoldingLabel);
+            };
+
+            pnlFavorite.DragDrop += (obj, ev) =>
+            {
+                pnlIgraci.Controls.Remove(HoldingLabel);
+                pnlFavorite.Controls.Add(HoldingLabel);
+
+            };
             var pleyers = await getPlayers();
+            //TODO dodati zvijezdice
             List<Label> list = new List<Label>();
             foreach (var player in pleyers)
             {
@@ -36,21 +61,28 @@ namespace FormGui
                 {
                     Text = player.Name,
                 };
-                item.Click += (obj, ev) =>
+                item.MouseDown += (obj, ev) =>
                 {
-                    var selected = (Label)obj;
-                    if (selectedLabels.Contains(selected))
-                    {
-                        selected.BorderStyle = BorderStyle.None;
-                        selectedLabels.Remove(selected);
 
-                    }
-                    else
-                    {
-                        selected.BorderStyle = BorderStyle.Fixed3D;
-                        selectedLabels.Add(selected);
-                    }
+                    //var selected = (Label)obj;
+                    //if (selectedLabels.Contains(selected))
+                    //{
+                    //    selected.BorderStyle = BorderStyle.None;
+                    //    selectedLabels.Remove(selected);
+
+                    //}
+                    //else
+                    //{
+                    //    selected.BorderStyle = BorderStyle.Fixed3D;
+                    //    selectedLabels.Add(selected);
+                    //}
+
+                    HoldingLabel = selected;
+                    if (selected == null) return;
+                    //Cursor.Current = Cursors.Hand;
+                    selected.DoDragDrop(selected, DragDropEffects.Move);
                 };
+
                 list.Add(item);
             }
             pnlIgraci.Controls.AddRange(list.ToArray());
@@ -119,7 +151,7 @@ namespace FormGui
         {
             await LoadTeams();
             if (cmbRep.SelectedIndex != 0)
-                LoadPlayers();
+                await LoadPlayers();
         }
 
         private async Task LoadTeams()
@@ -194,12 +226,12 @@ namespace FormGui
             }
         }
 
-        private void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
+        private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings settings = Settings.GetSettings();
             string teamCode = cmbRep.SelectedItem.ToString();
             settings.Values.FavoritTimeFifaCode = teamCode;
-            LoadPlayers();
+            await LoadPlayers();
         }
     }
 }

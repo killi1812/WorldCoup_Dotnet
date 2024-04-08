@@ -47,9 +47,9 @@
             pnlIgraci.AutoScroll = true;
             pnlIgraci.BorderStyle = BorderStyle.Fixed3D;
             pnlIgraci.FlowDirection = FlowDirection.TopDown;
-            pnlIgraci.Location = new Point(165, 117);
+            pnlIgraci.Location = new Point(101, 51);
             pnlIgraci.Name = "pnlIgraci";
-            pnlIgraci.Size = new Size(175, 426);
+            pnlIgraci.Size = new Size(200, 475);
             pnlIgraci.TabIndex = 0;
             pnlIgraci.WrapContents = false;
             // 
@@ -58,15 +58,15 @@
             pnlFavorite.AutoScroll = true;
             pnlFavorite.BorderStyle = BorderStyle.Fixed3D;
             pnlFavorite.FlowDirection = FlowDirection.TopDown;
-            pnlFavorite.Location = new Point(537, 117);
+            pnlFavorite.Location = new Point(516, 51);
             pnlFavorite.Name = "pnlFavorite";
-            pnlFavorite.Size = new Size(175, 426);
+            pnlFavorite.Size = new Size(200, 475);
             pnlFavorite.TabIndex = 1;
             pnlFavorite.WrapContents = false;
             // 
             // btnAllRight
             // 
-            btnAllRight.Location = new Point(400, 225);
+            btnAllRight.Location = new Point(370, 207);
             btnAllRight.Name = "btnAllRight";
             btnAllRight.Size = new Size(75, 23);
             btnAllRight.TabIndex = 2;
@@ -76,7 +76,7 @@
             // 
             // btnSelectedRight
             // 
-            btnSelectedRight.Location = new Point(400, 254);
+            btnSelectedRight.Location = new Point(370, 236);
             btnSelectedRight.Name = "btnSelectedRight";
             btnSelectedRight.Size = new Size(75, 23);
             btnSelectedRight.TabIndex = 4;
@@ -86,7 +86,7 @@
             // 
             // BtnAllLeft
             // 
-            BtnAllLeft.Location = new Point(400, 336);
+            BtnAllLeft.Location = new Point(370, 318);
             BtnAllLeft.Name = "BtnAllLeft";
             BtnAllLeft.Size = new Size(75, 23);
             BtnAllLeft.TabIndex = 6;
@@ -96,7 +96,7 @@
             // 
             // btnOneLeft
             // 
-            btnOneLeft.Location = new Point(400, 307);
+            btnOneLeft.Location = new Point(370, 289);
             btnOneLeft.Name = "btnOneLeft";
             btnOneLeft.Size = new Size(75, 23);
             btnOneLeft.TabIndex = 5;
@@ -140,7 +140,7 @@
             cmbRep.Name = "cmbRep";
             cmbRep.Size = new Size(106, 23);
             cmbRep.Sorted = true;
-            cmbRep.Click += cmbRep_SelectedIndexChanged;
+            cmbRep.SelectedIndexChanged += cmbRep_SelectedIndexChanged;
             // 
             // Form1
             // 
