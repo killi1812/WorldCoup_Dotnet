@@ -1,15 +1,39 @@
 ﻿using FootballData.Api;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace FormGui
 {
-    public partial class Form1 : Form
+    public partial class FavoritePlayerView : UserControl
     {
+        public FavoritePlayerView()
+        {
+            InitializeComponent();
+            repo = FootballRepositoryFactory.GetRepository(1);
+        }
+
         private List<Label> selectedLabels = new List<Label>();
         private Label? HoldingLabel = null;
         private bool _loading = false;
+        public string? team;
+        public IFootballRepository repo;
+
+        public async Task SetTeam(string team)
+        {
+            if (this.team == team) return;
+            this.team = team;
+            await LoadPlayers();
+        }
 
         private async Task LoadPlayers()
         {
@@ -135,51 +159,20 @@ namespace FormGui
             }
         }
 
-        private async Task LoadTeams()
-        {
-            var teams = await fetchTeams();
-            cmbRep.Items.AddRange(teams.ToArray());
-            Settings settings = Settings.GetSettings();
-            cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
-        }
-
-        private async Task<IOrderedEnumerable<string>> fetchTeams()
-        {
-            _loading = true;
-            try
-            {
-                cmbRep.Items.Clear();
-                Settings settings = Settings.GetSettings();
-                repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
-                return (await repo.GetTeams()).Select(t => t.FifaCode).Order();
-            }
-            catch (Exception err)
-            {
-
-                using Form form = new Error(err.Message);
-                form.ShowDialog();
-            }
-            finally
-            {
-                _loading = false;
-            }
-            return null;
-        }
-
         private async Task<IOrderedEnumerable<Player>> getPlayers()
         {
-            if (cmbRep.SelectedItem == null)
+            if (team == null || team == "")
             {
                 return null;
             }
 
-            IEnumerable<Match> matches = await repo.GetMatchesByCountry(cmbRep.SelectedItem.ToString());
+            IEnumerable<Match> matches = await repo.GetMatchesByCountry(team);
             IOrderedEnumerable<Player> players = matches
-                .Where(m => m.HomeTeamResult.FifaCode == cmbRep.SelectedItem.ToString())
+                .Where(m => m.HomeTeamResult.FifaCode == team)
                 .Select(m => m.HomeTeamStatistics)
                 .SelectMany(s => s.StartingEleven.Concat(s.Substitutes))
                 .Union(
-                    matches.Where(m => m.AwayTeamResult.FifaCode == cmbRep.SelectedItem.ToString())
+                    matches.Where(m => m.AwayTeamResult.FifaCode == team)
                     .Select(m => m.AwayTeamStatistics)
                     .SelectMany(s => s.StartingEleven.Concat(s.Substitutes))
                     )
@@ -189,16 +182,13 @@ namespace FormGui
 
         }
 
-
-       
-
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings settings = Settings.GetSettings();
-            string teamCode = cmbRep.SelectedItem.ToString();
+            string teamCode = team;
             settings.Values.FavoritTimeFifaCode = teamCode;
             await LoadPlayers();
         }
+
     }
 }
-

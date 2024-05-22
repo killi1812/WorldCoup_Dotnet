@@ -1,4 +1,5 @@
 ﻿using FootballData.Api;
+using FootballData.Data.Models;
 using FootballData.ProjectSettings;
 
 namespace FormGui
@@ -26,8 +27,6 @@ namespace FormGui
                 settingsForm.ShowDialog();
             }
             await LoadTeams();
-            if (cmbRep.SelectedIndex != 0)
-                await LoadPlayers();
         }
         private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -43,11 +42,38 @@ namespace FormGui
             if (response == DialogResult.OK)
             {
                 await LoadTeams();
+                
             }
         }
-        private void tabs_SelectedIndexChanged(object sender, EventArgs e)
+        private async Task LoadTeams()
         {
+            var teams = await fetchTeams();
+            cmbRep.Items.AddRange(teams.ToArray());
+            Settings settings = Settings.GetSettings();
+            cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
+        }
 
+        private async Task<IOrderedEnumerable<string>> fetchTeams()
+        {
+            try
+            {
+                cmbRep.Items.Clear();
+                Settings settings = Settings.GetSettings();
+                repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
+                return (await repo.GetTeams()).Select(t => t.FifaCode).Order();
+            }
+            catch (Exception err)
+            {
+
+                using Form form = new Error(err.Message);
+                form.ShowDialog();
+            }
+            return null;
+        }
+
+        private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await favoritePlayerView1.SetTeam(cmbRep.SelectedItem.ToString());
         }
     }
 }
