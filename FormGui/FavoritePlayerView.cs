@@ -99,19 +99,29 @@ namespace FormGui
                             clear = false;
                             selectedLabels.Clear();
                         }
-                        selected.BorderStyle = BorderStyle.None;
-                        selectedLabels.Remove(selected);
+                        UnSelect(selected);
                     }
                     else
                     {
-                        selected.BorderStyle = BorderStyle.FixedSingle;
-                        selectedLabels.Add(selected);
+                        Select(selected);
                     }
                 };
 
                 list.Add(item);
             }
             pnlIgraci.Controls.AddRange(list.ToArray());
+        }
+
+        private void Select(PlayerLabel? selected)
+        {
+            selected.BorderStyle = BorderStyle.FixedSingle;
+            selectedLabels.Add(selected);
+        }
+        //TODO make it unselect
+        private void UnSelect(PlayerLabel? selected)
+        {
+            selected.BorderStyle = BorderStyle.None;
+            selectedLabels.Remove(selected);
         }
 
         private void btnAllRight_Click(object sender, EventArgs e)
@@ -121,6 +131,10 @@ namespace FormGui
                 Control[] arr = new Control[pnlIgraci.Controls.Count];
                 pnlIgraci.Controls.CopyTo(arr, 0);
                 pnlFavorite.Controls.AddRange(arr);
+                foreach (PlayerLabel c in pnlFavorite.Controls)
+                {
+                    c.setFavorite(true);
+                }
             }
         }
 
@@ -131,6 +145,10 @@ namespace FormGui
                 Control[] arr = new Control[pnlFavorite.Controls.Count];
                 pnlFavorite.Controls.CopyTo(arr, 0);
                 pnlIgraci.Controls.AddRange(arr);
+                foreach (PlayerLabel c in pnlFavorite.Controls)
+                {
+                    c.setFavorite(false);
+                }
             }
 
         }
@@ -141,10 +159,11 @@ namespace FormGui
             IList<PlayerLabel> list = selectedLabels;
             for (int i = 0; i < list.Count; i++)
             {
-                Control c = (Control)list[i];
+                PlayerLabel c = list[i];
                 if (!pnlFavorite.Controls.Contains(c))
                 {
                     pnlFavorite.Controls.Add(c);
+                    c.setFavorite(true);
                 }
             }
         }
@@ -154,10 +173,11 @@ namespace FormGui
             IList<PlayerLabel> list = selectedLabels;
             for (int i = 0; i < list.Count; i++)
             {
-                Control c = (Control)list[i];
+                PlayerLabel c = list[i];
                 if (!pnlIgraci.Controls.Contains(c))
                 {
                     pnlIgraci.Controls.Add(c);
+                    c.setFavorite(false);
                 }
             }
         }

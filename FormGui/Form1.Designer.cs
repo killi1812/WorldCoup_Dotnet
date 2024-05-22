@@ -37,7 +37,7 @@
             tabPage1 = new TabPage();
             favoritePlayerView1 = new FavoritePlayerView();
             tabPage2 = new TabPage();
-            panelPlayersRank = new FlowLayoutPanel();
+            rangListView1 = new RangListView();
             tabAttendence = new TabPage();
             attendenceView1 = new AttendenceView();
             menuStrip1.SuspendLayout();
@@ -120,7 +120,7 @@
             // 
             // tabPage2
             // 
-            tabPage2.Controls.Add(panelPlayersRank);
+            tabPage2.Controls.Add(rangListView1);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Margin = new Padding(2);
             tabPage2.Name = "tabPage2";
@@ -130,13 +130,12 @@
             tabPage2.Text = "Player ranks";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panelPlayersRank
+            // rangListView1
             // 
-            panelPlayersRank.Location = new Point(277, 33);
-            panelPlayersRank.Margin = new Padding(2);
-            panelPlayersRank.Name = "panelPlayersRank";
-            panelPlayersRank.Size = new Size(326, 304);
-            panelPlayersRank.TabIndex = 0;
+            rangListView1.Location = new Point(84, 15);
+            rangListView1.Name = "rangListView1";
+            rangListView1.Size = new Size(699, 508);
+            rangListView1.TabIndex = 0;
             // 
             // tabAttendence
             // 
@@ -188,9 +187,9 @@
         private TabControl tabs;
         private TabPage tabPage2;
         private TabPage tabPage1;
-        private FlowLayoutPanel panelPlayersRank;
         private TabPage tabAttendence;
         private FavoritePlayerView favoritePlayerView1;
         private AttendenceView attendenceView1;
+        private RangListView rangListView1;
     }
 }

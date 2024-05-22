@@ -77,6 +77,7 @@ namespace FormGui
             settings.Values.FavoritTimeFifaCode = team;
             await favoritePlayerView1.SetTeam(team);
             await attendenceView1.SetTeam(team);
+            await rangListView1.SetTeam(team);
         }
     }
 }
