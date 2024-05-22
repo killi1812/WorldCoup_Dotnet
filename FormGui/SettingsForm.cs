@@ -1,4 +1,4 @@
-﻿ using FootballData.ProjectSettings;
+﻿using FootballData.ProjectSettings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,6 +62,5 @@ namespace FormGui
                 _ => throw new NotImplementedException()
             };
         }
-
     }
 }

@@ -44,11 +44,9 @@
             // 
             groupLang.Controls.Add(btnEng);
             groupLang.Controls.Add(btnHrv);
-            groupLang.Location = new Point(48, 53);
-            groupLang.Margin = new Padding(3, 4, 3, 4);
+            groupLang.Location = new Point(42, 40);
             groupLang.Name = "groupLang";
-            groupLang.Padding = new Padding(3, 4, 3, 4);
-            groupLang.Size = new Size(229, 133);
+            groupLang.Size = new Size(200, 100);
             groupLang.TabIndex = 0;
             groupLang.TabStop = false;
             groupLang.Text = "Language";
@@ -56,10 +54,9 @@
             // btnEng
             // 
             btnEng.AutoSize = true;
-            btnEng.Location = new Point(23, 47);
-            btnEng.Margin = new Padding(3, 4, 3, 4);
+            btnEng.Location = new Point(20, 35);
             btnEng.Name = "btnEng";
-            btnEng.Size = new Size(77, 24);
+            btnEng.Size = new Size(63, 19);
             btnEng.TabIndex = 1;
             btnEng.Text = "English";
             btnEng.UseVisualStyleBackColor = true;
@@ -69,10 +66,9 @@
             // 
             btnHrv.AutoSize = true;
             btnHrv.Checked = true;
-            btnHrv.Location = new Point(23, 84);
-            btnHrv.Margin = new Padding(3, 4, 3, 4);
+            btnHrv.Location = new Point(20, 63);
             btnHrv.Name = "btnHrv";
-            btnHrv.Size = new Size(86, 24);
+            btnHrv.Size = new Size(70, 19);
             btnHrv.TabIndex = 0;
             btnHrv.TabStop = true;
             btnHrv.Text = "Croatian";
@@ -83,11 +79,9 @@
             // 
             groupGender.Controls.Add(btnWoman);
             groupGender.Controls.Add(btnMan);
-            groupGender.Location = new Point(283, 53);
-            groupGender.Margin = new Padding(3, 4, 3, 4);
+            groupGender.Location = new Point(248, 40);
             groupGender.Name = "groupGender";
-            groupGender.Padding = new Padding(3, 4, 3, 4);
-            groupGender.Size = new Size(229, 133);
+            groupGender.Size = new Size(200, 100);
             groupGender.TabIndex = 2;
             groupGender.TabStop = false;
             groupGender.Text = "Gender";
@@ -95,10 +89,9 @@
             // btnWoman
             // 
             btnWoman.AutoSize = true;
-            btnWoman.Location = new Point(27, 84);
-            btnWoman.Margin = new Padding(3, 4, 3, 4);
+            btnWoman.Location = new Point(24, 63);
             btnWoman.Name = "btnWoman";
-            btnWoman.Size = new Size(90, 24);
+            btnWoman.Size = new Size(75, 19);
             btnWoman.TabIndex = 1;
             btnWoman.TabStop = true;
             btnWoman.Text = "Woman's";
@@ -108,10 +101,9 @@
             // btnMan
             // 
             btnMan.AutoSize = true;
-            btnMan.Location = new Point(29, 47);
-            btnMan.Margin = new Padding(3, 4, 3, 4);
+            btnMan.Location = new Point(25, 35);
             btnMan.Name = "btnMan";
-            btnMan.Size = new Size(68, 24);
+            btnMan.Size = new Size(57, 19);
             btnMan.TabIndex = 0;
             btnMan.TabStop = true;
             btnMan.Text = "Man's";
@@ -122,10 +114,9 @@
             // 
             Save.BackColor = SystemColors.ControlLightLight;
             Save.DialogResult = DialogResult.OK;
-            Save.Location = new Point(191, 251);
-            Save.Margin = new Padding(3, 4, 3, 4);
+            Save.Location = new Point(167, 188);
             Save.Name = "Save";
-            Save.Size = new Size(86, 31);
+            Save.Size = new Size(75, 23);
             Save.TabIndex = 3;
             Save.Text = "Save";
             Save.UseVisualStyleBackColor = false;
@@ -133,10 +124,9 @@
             // 
             // Cancel
             // 
-            Cancel.Location = new Point(283, 251);
-            Cancel.Margin = new Padding(3, 4, 3, 4);
+            Cancel.Location = new Point(248, 188);
             Cancel.Name = "Cancel";
-            Cancel.Size = new Size(86, 31);
+            Cancel.Size = new Size(75, 23);
             Cancel.TabIndex = 4;
             Cancel.Text = "Cancel";
             Cancel.UseVisualStyleBackColor = true;
@@ -144,14 +134,15 @@
             // 
             // SettingsForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AcceptButton = Save;
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(560, 297);
+            CancelButton = Cancel;
+            ClientSize = new Size(490, 223);
             Controls.Add(Cancel);
             Controls.Add(Save);
             Controls.Add(groupGender);
             Controls.Add(groupLang);
-            Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;

@@ -42,6 +42,7 @@
             label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
             label1.Text = "label1";
+            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
@@ -53,6 +54,7 @@
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             pictureBox1.Visible = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // PlayerLabel
             // 

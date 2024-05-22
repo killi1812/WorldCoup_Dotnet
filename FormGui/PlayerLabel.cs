@@ -21,7 +21,7 @@
         public bool Captain { get; private set; }
         public bool Favorite { get; private set; } = false;
         public int Number { get; private set; }
-        public string picture {  get; private set; }
+        public string picture { get; private set; }
         public string text { get; private set; }
 
         public void setFavorite(bool favorite)
@@ -38,8 +38,17 @@
 
         private void evRedirect(object obj, MouseEventArgs args)
         {
-           //TODO trigger Mousedown event na ovjo formi
+            //TODO trigger Mousedown event na ovjo formi
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.OnMouseDown((MouseEventArgs)e);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.OnMouseDown((MouseEventArgs)e);
+        }
     }
 }

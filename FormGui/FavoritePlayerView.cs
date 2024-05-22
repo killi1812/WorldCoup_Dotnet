@@ -28,6 +28,7 @@ namespace FormGui
         public async Task<List<string>> GetFavortePlayers()
         {
             //TODO Make favorite players max number 3
+            //TODO Add saving 
             throw new NotImplementedException();
         }
 
@@ -106,7 +107,6 @@ namespace FormGui
                         Select(selected);
                     }
                 };
-
                 list.Add(item);
             }
             pnlIgraci.Controls.AddRange(list.ToArray());
