@@ -39,7 +39,7 @@
             tabPage2 = new TabPage();
             panelPlayersRank = new FlowLayoutPanel();
             tabAttendence = new TabPage();
-            pnlRankAttendence = new FlowLayoutPanel();
+            attendenceView1 = new AttendenceView();
             menuStrip1.SuspendLayout();
             tabs.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -140,7 +140,7 @@
             // 
             // tabAttendence
             // 
-            tabAttendence.Controls.Add(pnlRankAttendence);
+            tabAttendence.Controls.Add(attendenceView1);
             tabAttendence.Location = new Point(4, 24);
             tabAttendence.Margin = new Padding(2);
             tabAttendence.Name = "tabAttendence";
@@ -150,13 +150,12 @@
             tabAttendence.Text = "Attendence";
             tabAttendence.UseVisualStyleBackColor = true;
             // 
-            // pnlRankAttendence
+            // attendenceView1
             // 
-            pnlRankAttendence.Location = new Point(267, 47);
-            pnlRankAttendence.Margin = new Padding(2);
-            pnlRankAttendence.Name = "pnlRankAttendence";
-            pnlRankAttendence.Size = new Size(326, 304);
-            pnlRankAttendence.TabIndex = 1;
+            attendenceView1.Location = new Point(8, 5);
+            attendenceView1.Name = "attendenceView1";
+            attendenceView1.Size = new Size(863, 521);
+            attendenceView1.TabIndex = 0;
             // 
             // Form1
             // 
@@ -191,7 +190,7 @@
         private TabPage tabPage1;
         private FlowLayoutPanel panelPlayersRank;
         private TabPage tabAttendence;
-        private FlowLayoutPanel pnlRankAttendence;
         private FavoritePlayerView favoritePlayerView1;
+        private AttendenceView attendenceView1;
     }
 }

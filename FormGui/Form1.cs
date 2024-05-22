@@ -42,7 +42,7 @@ namespace FormGui
             if (response == DialogResult.OK)
             {
                 await LoadTeams();
-                
+
             }
         }
         private async Task LoadTeams()
@@ -73,8 +73,10 @@ namespace FormGui
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings settings = Settings.GetSettings();
-            settings.Values.FavoritTimeFifaCode = cmbRep.SelectedItem.ToString();
-            await favoritePlayerView1.SetTeam(cmbRep.SelectedItem.ToString());
+            string? team = cmbRep.SelectedItem.ToString();
+            settings.Values.FavoritTimeFifaCode = team;
+            await favoritePlayerView1.SetTeam(team);
+            await attendenceView1.SetTeam(team);
         }
     }
 }

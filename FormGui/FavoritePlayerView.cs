@@ -10,14 +10,14 @@ namespace FormGui
         public FavoritePlayerView()
         {
             InitializeComponent();
-            repo = FootballRepositoryFactory.GetRepository(1);
+            repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
         }
 
         private List<PlayerLabel> selectedLabels = new List<PlayerLabel>();
         private bool _loading = false;
         private bool clear = false;
-        public string? team;
-        public IFootballRepository repo;
+        private string? team;
+        private IFootballRepository repo;
 
         public async Task SetTeam(string team)
         {
@@ -27,6 +27,7 @@ namespace FormGui
         }
         public async Task<List<string>> GetFavortePlayers()
         {
+            //TODO Make favorite players max number 3
             throw new NotImplementedException();
         }
 
