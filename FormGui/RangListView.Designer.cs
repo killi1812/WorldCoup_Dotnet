@@ -48,9 +48,9 @@
             flowLayoutPanel2.AutoScroll = true;
             flowLayoutPanel2.Dock = DockStyle.Right;
             flowLayoutPanel2.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanel2.Location = new Point(438, 0);
+            flowLayoutPanel2.Location = new Point(415, 0);
             flowLayoutPanel2.Name = "flowLayoutPanel2";
-            flowLayoutPanel2.Size = new Size(282, 508);
+            flowLayoutPanel2.Size = new Size(305, 508);
             flowLayoutPanel2.TabIndex = 1;
             flowLayoutPanel2.WrapContents = false;
             // 
