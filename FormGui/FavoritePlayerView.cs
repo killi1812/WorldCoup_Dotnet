@@ -1,16 +1,7 @@
 ﻿using FootballData.Api;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FormGui
 {
@@ -22,9 +13,9 @@ namespace FormGui
             repo = FootballRepositoryFactory.GetRepository(1);
         }
 
-        private List<Label> selectedLabels = new List<Label>();
-        private Label? HoldingLabel = null;
+        private List<PlayerLabel> selectedLabels = new List<PlayerLabel>();
         private bool _loading = false;
+        private bool clear = false;
         public string? team;
         public IFootballRepository repo;
 
@@ -34,78 +25,89 @@ namespace FormGui
             this.team = team;
             await LoadPlayers();
         }
+        public async Task<List<string>> GetFavortePlayers()
+        {
+            throw new NotImplementedException();
+        }
 
         private async Task LoadPlayers()
         {
             pnlIgraci.Controls.Clear();
             pnlFavorite.Controls.Clear();
             selectedLabels.Clear();
-            //drag and drop stuff 
-            //TODO napraviti da radi na listi ne samo jednom labelu
             pnlFavorite.AllowDrop = true;
             pnlIgraci.AllowDrop = true;
             pnlFavorite.DragEnter += (obj, ev) =>
             {
-                if (HoldingLabel == null || pnlFavorite.Controls.Contains(HoldingLabel)) return;
-                ev.Effect = DragDropEffects.Move;
+                foreach (PlayerLabel HoldingLabel in selectedLabels)
+                {
+                    if (HoldingLabel == null || pnlFavorite.Controls.Contains(HoldingLabel)) return;
+                    ev.Effect = DragDropEffects.Move;
+                }
             };
             pnlIgraci.DragEnter += (obj, ev) =>
             {
-                if (HoldingLabel == null || pnlIgraci.Controls.Contains(HoldingLabel)) return;
-                ev.Effect = DragDropEffects.Move;
+                foreach (PlayerLabel HoldingLabel in selectedLabels)
+                {
+                    if (HoldingLabel == null || pnlIgraci.Controls.Contains(HoldingLabel)) return;
+                    ev.Effect = DragDropEffects.Move;
+                }
             };
 
             pnlIgraci.DragDrop += (obj, ev) =>
             {
-                pnlFavorite.Controls.Remove(HoldingLabel);
-                pnlIgraci.Controls.Add(HoldingLabel);
+                foreach (PlayerLabel HoldingLabel in selectedLabels)
+                {
+                    pnlFavorite.Controls.Remove(HoldingLabel);
+                    pnlIgraci.Controls.Add(HoldingLabel);
+                    HoldingLabel.BorderStyle = BorderStyle.None;
+                    HoldingLabel.setFavorite(false);
+                }
+                clear = true;
             };
 
             pnlFavorite.DragDrop += (obj, ev) =>
             {
-                pnlIgraci.Controls.Remove(HoldingLabel);
-                pnlFavorite.Controls.Add(HoldingLabel);
-
+                foreach (PlayerLabel HoldingLabel in selectedLabels)
+                {
+                    pnlIgraci.Controls.Remove(HoldingLabel);
+                    pnlFavorite.Controls.Add(HoldingLabel);
+                    HoldingLabel.BorderStyle = BorderStyle.None;
+                    HoldingLabel.setFavorite(true);
+                }
+                clear = true;
             };
             var pleyers = await getPlayers();
-            //TODO dodati zvijezdice
-            List<Label> list = new List<Label>();
+            List<PlayerLabel> list = new List<PlayerLabel>();
             if (pleyers == null) return;
             foreach (var player in pleyers)
             {
-                Label item = new Label
-                {
-                    Text = player.Name,
-                };
+                PlayerLabel item = new PlayerLabel(player.Name, player.ShirtNumber, player.Captain);
 
-                item.Click += (obj, ev) =>
+                item.MouseDown += (obj, ev) =>
                 {
-                    //TODO select is not currently working
-                    if (selectedLabels.Count > 0)
+                    var selected = (PlayerLabel)obj;
+                    if (selectedLabels.Contains(selected))
                     {
-                        foreach (Label label in selectedLabels)
+                        foreach (PlayerLabel label in selectedLabels)
                         {
                             label.DoDragDrop(label, DragDropEffects.Move);
                         }
-                    }
-                };
-                item.MouseDown += (obj, ev) =>
-                {
-
-                    var selected = (Label)obj;
-                    if (selectedLabels.Contains(selected))
-                    {
+                        if (clear)
+                        {
+                            clear = false;
+                            selectedLabels.Clear();
+                        }
                         selected.BorderStyle = BorderStyle.None;
                         selectedLabels.Remove(selected);
-
                     }
                     else
                     {
                         selected.BorderStyle = BorderStyle.FixedSingle;
                         selectedLabels.Add(selected);
                     }
-
                 };
+
                 list.Add(item);
             }
             pnlIgraci.Controls.AddRange(list.ToArray());
@@ -135,7 +137,7 @@ namespace FormGui
         private void btnSelectedRight_Click(object sender, EventArgs e)
         {
 
-            IList list = selectedLabels;
+            IList<PlayerLabel> list = selectedLabels;
             for (int i = 0; i < list.Count; i++)
             {
                 Control c = (Control)list[i];
@@ -148,7 +150,7 @@ namespace FormGui
 
         private void btnOneLeft_Click(object sender, EventArgs e)
         {
-            IList list = selectedLabels;
+            IList<PlayerLabel> list = selectedLabels;
             for (int i = 0; i < list.Count; i++)
             {
                 Control c = (Control)list[i];

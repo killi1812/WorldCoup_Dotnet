@@ -59,7 +59,6 @@ namespace FormGui
             {
                 cmbRep.Items.Clear();
                 Settings settings = Settings.GetSettings();
-                repo = FootballRepositoryFactory.GetRepository(settings.Values.Repository);
                 return (await repo.GetTeams()).Select(t => t.FifaCode).Order();
             }
             catch (Exception err)
@@ -73,6 +72,8 @@ namespace FormGui
 
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Settings settings = Settings.GetSettings();
+            settings.Values.FavoritTimeFifaCode = cmbRep.SelectedItem.ToString();
             await favoritePlayerView1.SetTeam(cmbRep.SelectedItem.ToString());
         }
     }

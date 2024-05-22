@@ -55,6 +55,7 @@
             BtnAllLeft.TabIndex = 12;
             BtnAllLeft.Text = "<<";
             BtnAllLeft.UseVisualStyleBackColor = true;
+            BtnAllLeft.Click += BtnAllLeft_Click;
             // 
             // pnlFavorite
             // 
@@ -75,6 +76,7 @@
             btnOneLeft.TabIndex = 11;
             btnOneLeft.Text = "<";
             btnOneLeft.UseVisualStyleBackColor = true;
+            btnOneLeft.Click += btnOneLeft_Click;
             // 
             // btnAllRight
             // 
@@ -84,6 +86,7 @@
             btnAllRight.TabIndex = 9;
             btnAllRight.Text = ">>";
             btnAllRight.UseVisualStyleBackColor = true;
+            btnAllRight.Click += btnAllRight_Click;
             // 
             // btnSelectedRight
             // 
@@ -93,6 +96,7 @@
             btnSelectedRight.TabIndex = 10;
             btnSelectedRight.Text = ">";
             btnSelectedRight.UseVisualStyleBackColor = true;
+            btnSelectedRight.Click += btnSelectedRight_Click;
             // 
             // FavoritePlayerView
             // 
