@@ -12,6 +12,8 @@ namespace FootballData.ProjectSettings
 
         public string LeagueGender { get; set; }
 
+        public List<string> FavoritePlayers { get; set; }
+
         public int Repository { get; set; }
 
         public string FavoritTimeFifaCode { get; set; }
@@ -21,6 +23,7 @@ namespace FootballData.ProjectSettings
 
             foreach (var prop in GetType().GetProperties())
             {
+                //TODO add suport for lists 
                 sb.AppendLine($"{prop.Name} = {prop.GetValue(this)}");
             }
             return sb.ToString();
@@ -97,6 +100,9 @@ namespace FootballData.ProjectSettings
                         break;
                     case "String":
                         prop.SetValue(settingsValues, settingsDict[prop.Name]);
+                        break;
+                    case "List`1":
+                        var a = 5;
                         break;
                     default:
                         throw new NotImplementedException();

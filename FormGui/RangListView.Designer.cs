@@ -30,6 +30,8 @@
         {
             flowLayoutPanel1 = new FlowLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
+            printDialog1 = new PrintDialog();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -54,6 +56,11 @@
             flowLayoutPanel2.TabIndex = 1;
             flowLayoutPanel2.WrapContents = false;
             // 
+            // printDialog1
+            // 
+            printDialog1.Document = printDocument1;
+            printDialog1.UseEXDialog = true;
+            // 
             // RangListView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -62,6 +69,7 @@
             Controls.Add(flowLayoutPanel1);
             Name = "RangListView";
             Size = new Size(720, 508);
+            Load += RangListView_Load;
             ResumeLayout(false);
         }
 
@@ -69,5 +77,7 @@
 
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private PrintDialog printDialog1;
     }
 }

@@ -31,6 +31,7 @@ namespace FormGui
         private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Settings settings = Settings.GetSettings();
+            settings.Values.FavoritePlayers = await favoritePlayerView1.GetFavortePlayers();
             await settings.SaveSettingsAsync();
             await LoadTeams();
         }

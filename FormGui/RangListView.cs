@@ -81,5 +81,9 @@ namespace FormGui
             flowLayoutPanel2.Controls.AddRange(cards.ToArray());
         }
 
+        private void RangListView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

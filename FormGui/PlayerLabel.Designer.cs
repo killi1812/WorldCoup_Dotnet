@@ -37,7 +37,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 10);
+            label1.Location = new Point(3, 11);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 0;
@@ -46,10 +46,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Dock = DockStyle.Right;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(119, 10);
+            pictureBox1.Location = new Point(122, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 21);
+            pictureBox1.Size = new Size(25, 26);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
@@ -64,7 +65,7 @@
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Name = "PlayerLabel";
-            Size = new Size(147, 34);
+            Size = new Size(147, 26);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();

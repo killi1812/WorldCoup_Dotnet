@@ -29,7 +29,12 @@ namespace FormGui
         {
             //TODO Make favorite players max number 3
             //TODO Add saving 
-            throw new NotImplementedException();
+            List<string> list = new List<string>();
+            foreach (PlayerLabel p in pnlFavorite.Controls)
+            {
+                list.Add(p.Name);
+            }
+            return list;
         }
 
         private async Task LoadPlayers()
