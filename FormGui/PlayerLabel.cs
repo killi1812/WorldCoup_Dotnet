@@ -16,6 +16,7 @@
             label1.Text = $"{Name} {Number} {(Captain ? "C" : "")} {text}";
             pictureBox1.Visible = Favorite;
             pictureBox2.Visible = true;
+            LoadPicture();
         }
 
         public string Name { get; private set; }
@@ -30,10 +31,13 @@
             pictureBox1.Visible = Favorite;
             this.Width = label1.Width + pictureBox2.Width + pictureBox1.Width + 10;
         }
-        public void LoadPicture(string path)
+        public void LoadPicture()
         {
-            //TODO load picture if exists
-            throw new NotImplementedException();
+
+            if (File.Exists(Name))
+            {
+                pictureBox2.ImageLocation = Name;
+            }
         }
         private void addPicture()
         {
@@ -42,7 +46,8 @@
             if (result == DialogResult.OK)
             {
                 //TODO save picture for local path 
-                pictureBox2.ImageLocation = fileDialog.FileName;
+                File.Copy(fileDialog.FileName, $"{this.Name}", true);
+                pictureBox2.ImageLocation = this.Name;
             }
         }
         private void label1_Click(object sender, EventArgs e)
@@ -57,7 +62,6 @@
                 var location = this.PointToScreen(args.Location);
                 contextMenuStrip1.Show(location);
             }
-
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

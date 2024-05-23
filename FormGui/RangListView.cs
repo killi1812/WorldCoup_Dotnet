@@ -60,6 +60,7 @@ namespace FormGui
             }
 
             flowLayoutPanel1.Controls.Clear();
+            flowLayoutPanel2.Controls.Clear();
 
             List<PlayerLabel> goals = new List<PlayerLabel>();
             List<PlayerLabel> cards = new List<PlayerLabel>();
