@@ -93,6 +93,7 @@ namespace FormGui
 
                 item.MouseDown += (obj, ev) =>
                 {
+                    if (ev.Button != MouseButtons.Left) return;
                     var selected = (PlayerLabel)obj;
                     if (selectedLabels.Contains(selected))
                     {
