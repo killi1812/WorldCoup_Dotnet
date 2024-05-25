@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfGui.SettingsWinfow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfGui"
+        mc:Ignorable="d"
+        Title="SettingsWinfow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="316,389,0,0" VerticalAlignment="Top" Width="49"/>
+        <Button Content="Cancle" HorizontalAlignment="Left" Margin="419,389,0,0" VerticalAlignment="Top" Width="53"/>
+        <StackPanel Height="100" Width="200" Margin="165,143,435,191">
+            <RadioButton Content="RadioButton"/>
+            <RadioButton Content="RadioButton"/>
+
+        </StackPanel>
+        <StackPanel Height="100" Width="200" Margin="419,143,181,191">
+            <RadioButton Content="RadioButton"/>
+            <RadioButton Content="RadioButton"/>
+
+        </StackPanel>
+    </Grid>
+</Window>

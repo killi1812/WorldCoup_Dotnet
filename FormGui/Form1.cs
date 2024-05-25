@@ -11,12 +11,26 @@ namespace FormGui
         private IFootballRepository repo;
         public Form1()
         {
+            SetLengauge();
             InitializeComponent();
             repo = FootballRepositoryFactory.GetRepository(1);
         }
         private async void MainForm_Load(object sender, EventArgs e)
         {
 
+        }
+        private void SetLengauge()
+        {
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
+        }
+        private async Task RefreshAsync()
+        {
+            SetLengauge();
+            this.Controls.Clear();
+            InitializeComponent();
+            await rangListView1.RefreshAsync();
+            await LoadTeams();
         }
         private async void MainForm_Show(object sender, EventArgs e)
         {
@@ -34,6 +48,7 @@ namespace FormGui
             settings.Values.FavoritePlayers = await favoritePlayerView1.GetFavortePlayers();
             await settings.SaveSettingsAsync();
             await LoadTeams();
+            await RefreshAsync();
         }
 
         private async void openSettingsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,7 +58,7 @@ namespace FormGui
             if (response == DialogResult.OK)
             {
                 await LoadTeams();
-
+                await RefreshAsync();
             }
         }
         private async Task LoadTeams()

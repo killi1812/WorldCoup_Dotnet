@@ -42,61 +42,43 @@
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 11);
+            resources.ApplyResources(label1, "label1");
             label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
             label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.Dock = DockStyle.Right;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(135, 0);
+            resources.ApplyResources(pictureBox1, "pictureBox1");
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(25, 26);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
-            pictureBox1.Visible = false;
             pictureBox1.Click += pictureBox1_Click;
             // 
             // contextMenuStrip1
             // 
+            resources.ApplyResources(contextMenuStrip1, "contextMenuStrip1");
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { addPictureToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 48);
             // 
             // addPictureToolStripMenuItem
             // 
+            resources.ApplyResources(addPictureToolStripMenuItem, "addPictureToolStripMenuItem");
             addPictureToolStripMenuItem.Name = "addPictureToolStripMenuItem";
-            addPictureToolStripMenuItem.Size = new Size(180, 22);
-            addPictureToolStripMenuItem.Text = "AddPicture";
             addPictureToolStripMenuItem.Click += addPictureToolStripMenuItem_Click;
             // 
             // pictureBox2
             // 
-            pictureBox2.Dock = DockStyle.Right;
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(110, 0);
+            resources.ApplyResources(pictureBox2, "pictureBox2");
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(25, 26);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
-            pictureBox2.Visible = false;
             // 
             // PlayerLabel
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(pictureBox2);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Name = "PlayerLabel";
-            Size = new Size(160, 26);
             MouseDown += PlayerLabel_MouseDown;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             contextMenuStrip1.ResumeLayout(false);

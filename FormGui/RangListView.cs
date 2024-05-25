@@ -19,11 +19,17 @@ namespace FormGui
 
         public async Task SetTeam(string team)
         {
-            flowLayoutPanel1.Controls.Clear();
             if (this.team == team) return;
             this.team = team;
             await GetPlayers();
         }
+        public async Task RefreshAsync()
+        {
+            Controls.Clear();
+            InitializeComponent();
+            await GetPlayers();
+        }
+
         private async Task GetPlayers()
         {
             if (team == null || team == "")
