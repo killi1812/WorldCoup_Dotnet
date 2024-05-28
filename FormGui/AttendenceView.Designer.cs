@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttendenceView));
             flowLayoutPanel1 = new FlowLayoutPanel();
+            printPreviewDialog1 = new PrintPreviewDialog();
+            printDocument1 = new System.Drawing.Printing.PrintDocument();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -38,6 +41,21 @@
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(461, 423);
             flowLayoutPanel1.TabIndex = 0;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            printDocument1.PrintPage += printDocument1_PrintPage;
             // 
             // AttendenceView
             // 
@@ -52,5 +70,7 @@
         #endregion
 
         private FlowLayoutPanel flowLayoutPanel1;
+        private PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

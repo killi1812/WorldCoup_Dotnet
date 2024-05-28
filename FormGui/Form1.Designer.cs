@@ -54,7 +54,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, cmbRep, viewToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, viewToolStripMenuItem, cmbRep });
             resources.ApplyResources(menuStrip1, "menuStrip1");
             menuStrip1.Name = "menuStrip1";
             // 
@@ -94,11 +94,13 @@
             // 
             printToolStripMenuItem.Name = "printToolStripMenuItem";
             resources.ApplyResources(printToolStripMenuItem, "printToolStripMenuItem");
+            printToolStripMenuItem.Click += printToolStripMenuItem_Click;
             // 
             // prToolStripMenuItem
             // 
             prToolStripMenuItem.Name = "prToolStripMenuItem";
             resources.ApplyResources(prToolStripMenuItem, "prToolStripMenuItem");
+            prToolStripMenuItem.Click += prToolStripMenuItem_Click;
             // 
             // tabs
             // 
@@ -153,7 +155,6 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "Form1";
-            Load += MainForm_Load;
             Shown += MainForm_Show;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();

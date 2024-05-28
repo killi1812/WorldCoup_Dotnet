@@ -40,10 +40,11 @@
             // 
             pnlIgraci.AutoScroll = true;
             pnlIgraci.BorderStyle = BorderStyle.Fixed3D;
+            pnlIgraci.Dock = DockStyle.Left;
             pnlIgraci.FlowDirection = FlowDirection.TopDown;
-            pnlIgraci.Location = new Point(77, 27);
+            pnlIgraci.Location = new Point(0, 0);
             pnlIgraci.Name = "pnlIgraci";
-            pnlIgraci.Size = new Size(200, 475);
+            pnlIgraci.Size = new Size(237, 529);
             pnlIgraci.TabIndex = 7;
             pnlIgraci.WrapContents = false;
             // 
@@ -61,10 +62,11 @@
             // 
             pnlFavorite.AutoScroll = true;
             pnlFavorite.BorderStyle = BorderStyle.Fixed3D;
+            pnlFavorite.Dock = DockStyle.Right;
             pnlFavorite.FlowDirection = FlowDirection.TopDown;
-            pnlFavorite.Location = new Point(492, 27);
+            pnlFavorite.Location = new Point(527, 0);
             pnlFavorite.Name = "pnlFavorite";
-            pnlFavorite.Size = new Size(200, 475);
+            pnlFavorite.Size = new Size(242, 529);
             pnlFavorite.TabIndex = 8;
             pnlFavorite.WrapContents = false;
             // 

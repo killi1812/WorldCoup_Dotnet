@@ -6,7 +6,7 @@ using System.Data;
 namespace FormGui
 {
     [ToolboxItem(true)]
-    public partial class AttendenceView : UserControl
+    public partial class AttendenceView : UserControl, IPrintable
     {
         public AttendenceView()
         {
@@ -43,6 +43,22 @@ namespace FormGui
                 labels.Add(label);
             }
             flowLayoutPanel1.Controls.AddRange(labels.ToArray());
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            string text = ""; 
+            foreach (Control item in flowLayoutPanel1.Controls)
+            {
+                text += $"\n{item.Text}";
+            }
+
+            e.Graphics.DrawString(text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, new PointF(100, 100));
+        }
+
+        public void Print()
+        {
+            printPreviewDialog1.ShowDialog();
         }
     }
 }

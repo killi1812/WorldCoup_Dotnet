@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RangListView));
             flowLayoutPanel1 = new FlowLayoutPanel();
             flowLayoutPanel2 = new FlowLayoutPanel();
             printDocument1 = new System.Drawing.Printing.PrintDocument();
-            printDialog1 = new PrintDialog();
+            printPreviewDialog1 = new PrintPreviewDialog();
             SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -56,10 +57,20 @@
             flowLayoutPanel2.TabIndex = 1;
             flowLayoutPanel2.WrapContents = false;
             // 
-            // printDialog1
+            // printDocument1
             // 
-            printDialog1.Document = printDocument1;
-            printDialog1.UseEXDialog = true;
+            printDocument1.PrintPage += printDocument1_PrintPage;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
             // 
             // RangListView
             // 
@@ -69,7 +80,6 @@
             Controls.Add(flowLayoutPanel1);
             Name = "RangListView";
             Size = new Size(720, 508);
-            Load += RangListView_Load;
             ResumeLayout(false);
         }
 
@@ -78,6 +88,6 @@
         private FlowLayoutPanel flowLayoutPanel1;
         private FlowLayoutPanel flowLayoutPanel2;
         private System.Drawing.Printing.PrintDocument printDocument1;
-        private PrintDialog printDialog1;
+        private PrintPreviewDialog printPreviewDialog1;
     }
 }

@@ -79,7 +79,6 @@ namespace FormGui
             }
             catch (Exception err)
             {
-
                 using Form form = new Error(err.Message);
                 form.ShowDialog();
             }
@@ -89,11 +88,27 @@ namespace FormGui
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
             Settings settings = Settings.GetSettings();
-            string? team = cmbRep.SelectedItem.ToString();
+            string team = cmbRep.SelectedItem.ToString()!;
             settings.Values.FavoritTimeFifaCode = team;
             await favoritePlayerView1.SetTeam(team);
             await attendenceView1.SetTeam(team);
             await rangListView1.SetTeam(team);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int index = tabs.SelectedIndex;
+            var tab = tabs.Controls[index];
+
+            if(tab.Controls[0] is IPrintable printable)
+            {
+                printable.Print();
+            }
+        }
+
+        private void prToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

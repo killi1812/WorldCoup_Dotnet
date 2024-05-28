@@ -6,7 +6,7 @@ using System.Data;
 
 namespace FormGui
 {
-    public partial class RangListView : UserControl
+    public partial class RangListView : UserControl, IPrintable
     {
         public RangListView()
         {
@@ -88,9 +88,20 @@ namespace FormGui
             flowLayoutPanel2.Controls.AddRange(cards.ToArray());
         }
 
-        private void RangListView_Load(object sender, EventArgs e)
+        public void Print()
         {
+            printPreviewDialog1.ShowDialog();
+        }
 
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            string text = "";
+            foreach (Control item in flowLayoutPanel1.Controls)
+            {
+                text += $"\n{item.Text}";
+            }
+
+            e.Graphics.DrawString(text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, new PointF(100, 100));
         }
     }
 }
