@@ -34,6 +34,9 @@
             openSettingsToolStripMenuItem = new ToolStripMenuItem();
             saveSettingsToolStripMenuItem = new ToolStripMenuItem();
             cmbRep = new ToolStripComboBox();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            printToolStripMenuItem = new ToolStripMenuItem();
+            prToolStripMenuItem = new ToolStripMenuItem();
             tabs = new TabControl();
             tabPage1 = new TabPage();
             favoritePlayerView1 = new FavoritePlayerView();
@@ -51,7 +54,7 @@
             // menuStrip1
             // 
             menuStrip1.ImageScalingSize = new Size(24, 24);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, cmbRep });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { toolStripMenuItem1, cmbRep, viewToolStripMenuItem });
             resources.ApplyResources(menuStrip1, "menuStrip1");
             menuStrip1.Name = "menuStrip1";
             // 
@@ -80,6 +83,22 @@
             resources.ApplyResources(cmbRep, "cmbRep");
             cmbRep.Sorted = true;
             cmbRep.SelectedIndexChanged += cmbRep_SelectedIndexChanged;
+            // 
+            // viewToolStripMenuItem
+            // 
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { printToolStripMenuItem, prToolStripMenuItem });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            resources.ApplyResources(viewToolStripMenuItem, "viewToolStripMenuItem");
+            // 
+            // printToolStripMenuItem
+            // 
+            printToolStripMenuItem.Name = "printToolStripMenuItem";
+            resources.ApplyResources(printToolStripMenuItem, "printToolStripMenuItem");
+            // 
+            // prToolStripMenuItem
+            // 
+            prToolStripMenuItem.Name = "prToolStripMenuItem";
+            resources.ApplyResources(prToolStripMenuItem, "prToolStripMenuItem");
             // 
             // tabs
             // 
@@ -159,5 +178,8 @@
         private FavoritePlayerView favoritePlayerView1;
         private AttendenceView attendenceView1;
         private RangListView rangListView1;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem printToolStripMenuItem;
+        private ToolStripMenuItem prToolStripMenuItem;
     }
 }

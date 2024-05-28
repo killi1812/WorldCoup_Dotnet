@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="openSettingsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+O</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="openSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
@@ -128,17 +124,42 @@
   <data name="openSettingsToolStripMenuItem.Text" xml:space="preserve">
     <value>Otvori Postavke</value>
   </data>
-  <data name="saveSettingsToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
-    <value>Ctrl+S</value>
-  </data>
   <data name="saveSettingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 22</value>
   </data>
   <data name="saveSettingsToolStripMenuItem.Text" xml:space="preserve">
     <value>Spremi Postavke</value>
   </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 23</value>
+  </data>
   <data name="toolStripMenuItem1.Text" xml:space="preserve">
     <value>Postavke</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="printToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+P</value>
+  </data>
+  <data name="printToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="printToolStripMenuItem.Text" xml:space="preserve">
+    <value>Ispis</value>
+  </data>
+  <data name="prToolStripMenuItem.ShortcutKeys" type="System.Windows.Forms.Keys, System.Windows.Forms">
+    <value>Ctrl+Shift+P</value>
+  </data>
+  <data name="prToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 22</value>
+  </data>
+  <data name="prToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pregled ispisa</value>
+  </data>
+  <data name="viewToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 23</value>
+  </data>
+  <data name="viewToolStripMenuItem.Text" xml:space="preserve">
+    <value>Pregled</value>
   </data>
   <data name="tabPage1.Text" xml:space="preserve">
     <value>Omiljeni Igrači</value>
