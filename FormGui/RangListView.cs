@@ -3,6 +3,7 @@ using FootballData.Data.Enums;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
 using System.Data;
+using System.Text;
 
 namespace FormGui
 {
@@ -95,13 +96,18 @@ namespace FormGui
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            string text = "";
-            foreach (Control item in flowLayoutPanel1.Controls)
+            StringBuilder text = new StringBuilder();
+            foreach (PlayerLabel item in flowLayoutPanel1.Controls)
             {
-                text += $"\n{item.Text}";
+                text.AppendLine(item.Text);
+            }
+            text.AppendLine();
+            foreach (PlayerLabel item in flowLayoutPanel1.Controls)
+            {
+                text.AppendLine(item.Text);
             }
 
-            e.Graphics.DrawString(text, new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, new PointF(100, 100));
+            e.Graphics.DrawString(text.ToString(), new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, new PointF(100, 100));
         }
     }
 }

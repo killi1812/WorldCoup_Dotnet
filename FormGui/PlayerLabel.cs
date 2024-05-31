@@ -17,6 +17,7 @@ namespace FormGui
             Number = number;
             Captain = captain;
             label1.Text = $"{Name} {Number} {(Captain ? "C" : "")} {text}";
+            Text = label1.Text;
             this.Width = label1.Width + pictureBox2.Width + pictureBox1.Width + 10;
             pictureBox1.Visible = Favorite;
             pictureBox2.Visible = true;
@@ -33,8 +34,6 @@ namespace FormGui
         public bool Captain { get; private set; }
         public bool Favorite { get; private set; } = false;
         public int Number { get; private set; }
-        public string text { get; private set; }
-
         public void setFavorite(bool favorite)
         {
             Favorite = favorite;
