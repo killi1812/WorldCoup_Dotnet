@@ -31,6 +31,8 @@ internal class WeatherDescriptionConverter : JsonConverter<WeatherDescription>
                 return WeatherDescription.PartlyCloudyNight;
             case "Sunny":
                 return WeatherDescription.Sunny;
+            default:
+                return WeatherDescription.Sunny;
         }
 
         throw new Exception("Cannot unmarshal type Description");

@@ -20,5 +20,12 @@ namespace WpfGui
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWinfow settings = new SettingsWinfow
+                            ();
+            settings.ShowDialog();
+        }
     }
 }

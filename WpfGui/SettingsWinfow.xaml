@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGui"
         mc:Ignorable="d"
-        Title="SettingsWinfow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="316,389,0,0" VerticalAlignment="Top" Width="49"/>
-        <Button Content="Cancle" HorizontalAlignment="Left" Margin="419,389,0,0" VerticalAlignment="Top" Width="53"/>
-        <StackPanel Height="100" Width="200" Margin="165,143,435,191">
-            <RadioButton Content="RadioButton"/>
-            <RadioButton Content="RadioButton"/>
+        Title="SettingsWinfow" Height="200" Width="400
+        ">
+    <Grid Margin="0,0,0,0
+          ">
+        <Button Content="Ok" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" Width="50"/>
+        <Button Content="Cancle" HorizontalAlignment="Left" Margin="220,123,0,0" VerticalAlignment="Top" Width="50"/>
+        <StackPanel Margin="50,40,250,100">
+            <RadioButton Content="en" Margin="5"/>
+            <RadioButton Content="hr" Margin="5"/>
 
         </StackPanel>
-        <StackPanel Height="100" Width="200" Margin="419,143,181,191">
-            <RadioButton Content="RadioButton"/>
-            <RadioButton Content="RadioButton"/>
+        <StackPanel Margin="240,40,50,100">
+            <RadioButton Content="Man" Margin="5"/>
+            <RadioButton Content="Woman" Margin="5"/>
 
         </StackPanel>
     </Grid>

@@ -1,5 +1,4 @@
 ﻿using FootballData.Api;
-using FootballData.Data.Models;
 using FootballData.ProjectSettings;
 
 namespace FormGui
@@ -14,10 +13,6 @@ namespace FormGui
             SetLengauge();
             InitializeComponent();
             repo = FootballRepositoryFactory.GetRepository(1);
-        }
-        private async void MainForm_Load(object sender, EventArgs e)
-        {
-
         }
         private void SetLengauge()
         {

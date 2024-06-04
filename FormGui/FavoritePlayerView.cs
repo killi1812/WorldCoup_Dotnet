@@ -11,6 +11,7 @@ namespace FormGui
         {
             InitializeComponent();
             repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
+            label1.Text = "";
         }
 
         private List<PlayerLabel> selectedLabels = new List<PlayerLabel>();
@@ -34,7 +35,7 @@ namespace FormGui
             {
                 list.Add(p.Name);
             }
-            return list;
+            return list.Take(3).ToList();
         }
 
         private async Task LoadPlayers()
@@ -44,6 +45,7 @@ namespace FormGui
             selectedLabels.Clear();
             pnlFavorite.AllowDrop = true;
             pnlIgraci.AllowDrop = true;
+
             pnlFavorite.DragEnter += (obj, ev) =>
             {
                 foreach (PlayerLabel HoldingLabel in selectedLabels)
@@ -51,6 +53,7 @@ namespace FormGui
                     if (HoldingLabel == null || pnlFavorite.Controls.Contains(HoldingLabel)) return;
                     ev.Effect = DragDropEffects.Move;
                 }
+                ShowError();
             };
             pnlIgraci.DragEnter += (obj, ev) =>
             {
@@ -59,6 +62,7 @@ namespace FormGui
                     if (HoldingLabel == null || pnlIgraci.Controls.Contains(HoldingLabel)) return;
                     ev.Effect = DragDropEffects.Move;
                 }
+                ShowError();
             };
 
             pnlIgraci.DragDrop += (obj, ev) =>
@@ -117,13 +121,22 @@ namespace FormGui
             }
             pnlIgraci.Controls.AddRange(list.ToArray());
         }
-
+        private void ShowError()
+        {
+            var count = pnlFavorite.Controls.Count;
+            if (count > 3)
+            {
+                var b = Settings.GetSettings().Values.Language;
+                label1.Text = b == "en" ? "Max 3 players" : "Najviše 3 igrača";
+                label1.Show();
+            }
+            label1.Hide();
+        }
         private void Select(PlayerLabel? selected)
         {
             selected.BorderStyle = BorderStyle.FixedSingle;
             selectedLabels.Add(selected);
         }
-        //TODO make it unselect
         private void UnSelect(PlayerLabel? selected)
         {
             selected.BorderStyle = BorderStyle.None;
@@ -142,6 +155,7 @@ namespace FormGui
                     c.setFavorite(true);
                 }
             }
+            ShowError();
         }
 
         private void BtnAllLeft_Click(object sender, EventArgs e)
@@ -156,12 +170,11 @@ namespace FormGui
                     c.setFavorite(false);
                 }
             }
-
+            ShowError();
         }
 
         private void btnSelectedRight_Click(object sender, EventArgs e)
         {
-
             IList<PlayerLabel> list = selectedLabels;
             for (int i = 0; i < list.Count; i++)
             {
@@ -172,6 +185,7 @@ namespace FormGui
                     c.setFavorite(true);
                 }
             }
+            ShowError();
         }
 
         private void btnOneLeft_Click(object sender, EventArgs e)
@@ -186,6 +200,7 @@ namespace FormGui
                     c.setFavorite(false);
                 }
             }
+            ShowError();
         }
 
         private async Task<IOrderedEnumerable<Player>> getPlayers()

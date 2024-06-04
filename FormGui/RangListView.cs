@@ -3,6 +3,8 @@ using FootballData.Data.Enums;
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.Text;
 
 namespace FormGui
@@ -91,23 +93,108 @@ namespace FormGui
 
         public void Print()
         {
-            printPreviewDialog1.ShowDialog();
-        }
-
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
             StringBuilder text = new StringBuilder();
             foreach (PlayerLabel item in flowLayoutPanel1.Controls)
             {
                 text.AppendLine(item.Text);
             }
             text.AppendLine();
-            foreach (PlayerLabel item in flowLayoutPanel1.Controls)
+            foreach (PlayerLabel item in flowLayoutPanel2.Controls)
             {
                 text.AppendLine(item.Text);
             }
 
-            e.Graphics.DrawString(text.ToString(), new Font("Times New Roman", 14, FontStyle.Regular), Brushes.Black, new PointF(100, 100));
+            PrintDocument p = printDocument1; 
+
+            var font = new Font("Times New Roman", 12);
+            var margins = p.DefaultPageSettings.Margins;
+            var layoutArea = new RectangleF(
+                margins.Left,
+                margins.Top,
+                p.DefaultPageSettings.PrintableArea.Width - (margins.Left + margins.Right),
+                p.DefaultPageSettings.PrintableArea.Height - (margins.Top + margins.Bottom));
+            var layoutSize = layoutArea.Size;
+            layoutSize.Height = layoutSize.Height - font.GetHeight(); // keep lastline visible
+            var brush = new SolidBrush(Color.Black);
+
+            var remainingText = text.ToString();
+            p.PrintPage += delegate (object sender1, PrintPageEventArgs e1)
+            {
+                int charsFitted, linesFilled;
+
+                // measure how many characters will fit of the remaining text
+                var realsize = e1.Graphics.MeasureString(
+                    remainingText,
+                    font,
+                    layoutSize,
+                    StringFormat.GenericDefault,
+                    out charsFitted,  // this will return what we need
+                    out linesFilled);
+
+                // take from the remainingText what we're going to print on this page
+                var fitsOnPage = remainingText.Substring(0, charsFitted);
+                // keep what is not printed on this page 
+                remainingText = remainingText.Substring(charsFitted).Trim();
+
+                // print what fits on the page
+                e1.Graphics.DrawString(
+                    fitsOnPage,
+                    font,
+                    brush,
+                    layoutArea);
+
+                // if there is still text left, tell the PrintDocument it needs to call 
+                // PrintPage again.
+                e1.HasMorePages = remainingText.Length > 0;
+            };
+
+            p.Print();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            var font = new Font("Times New Roman", 12);
+            var margins = printDocument1.DefaultPageSettings.Margins;
+            var layoutArea = new RectangleF(
+                margins.Left,
+                margins.Top,
+                printDocument1.DefaultPageSettings.PrintableArea.Width - (margins.Left + margins.Right),
+               printDocument1.DefaultPageSettings.PrintableArea.Height - (margins.Top + margins.Bottom));
+            var layoutSize = layoutArea.Size;
+            layoutSize.Height = layoutSize.Height - font.GetHeight(); // keep lastline visible
+            var brush = new SolidBrush(Color.Black);
+
+            // what still needs to be printed
+            var remainingText = "";
+
+            int charsFitted, linesFilled;
+
+            // measure how many characters will fit of the remaining text
+            var realsize = e.Graphics.MeasureString(
+            remainingText,
+                font,
+                layoutSize,
+                StringFormat.GenericDefault,
+                out charsFitted,  // this will return what we need
+                out linesFilled);
+
+            // take from the remainingText what we're going to print on this page
+            var fitsOnPage = remainingText.Substring(0, charsFitted);
+            // keep what is not printed on this page 
+            remainingText = remainingText.Substring(charsFitted).Trim();
+
+            // print what fits on the page
+            e.Graphics.DrawString(
+            fitsOnPage,
+            font,
+                brush,
+                layoutArea);
+
+            // if there is still text left, tell the PrintDocument it needs to call 
+            // PrintPage again.
+            e.HasMorePages = remainingText.Length > 0;
+
+            //TODO add another page
         }
     }
 }
