@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FootballData.ProjectSettings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,11 @@ namespace WpfGui
         public SettingsWinfow()
         {
             InitializeComponent();
+        }
+        private void loadSettings()
+        {
+            Settings settings = Settings.GetSettings(); 
+            
         }
     }
 }

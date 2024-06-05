@@ -7,19 +7,30 @@
         mc:Ignorable="d"
         Title="SettingsWinfow" Height="200" Width="400
         ">
-    <Grid Margin="0,0,0,0
-          ">
-        <Button Content="Ok" HorizontalAlignment="Left" Margin="120,125,0,0" VerticalAlignment="Top" Width="50"/>
-        <Button Content="Cancle" HorizontalAlignment="Left" Margin="220,123,0,0" VerticalAlignment="Top" Width="50"/>
-        <StackPanel Margin="50,40,250,100">
-            <RadioButton Content="en" Margin="5"/>
+    <Grid Margin="0,0,0,0">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Margin="15,15,10,15" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">
+            <RadioButton Content="en" Margin="5" IsChecked="True"/>
             <RadioButton Content="hr" Margin="5"/>
 
         </StackPanel>
-        <StackPanel Margin="240,40,50,100">
-            <RadioButton Content="Man" Margin="5"/>
+
+        <StackPanel Margin="15,15,10,15" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0">
+            <RadioButton Content="Man" Margin="5" IsChecked="True"/>
             <RadioButton Content="Woman" Margin="5"/>
 
         </StackPanel>
+
+        <Button Content="Ok" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,30,10,0" Width="50" Height="20" Grid.Column="0" Grid.Row="1" IsDefault="True"/>
+        <Button Content="Cancle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0"  Width="50" Height="20" Grid.Column="1" Grid.Row="1"/>
+
     </Grid>
 </Window>
