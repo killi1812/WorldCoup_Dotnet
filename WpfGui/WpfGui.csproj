@@ -9,7 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="NoProfile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\FootballData\FootballData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="NoProfile.png" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,16 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="PlayerProfile.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PostavaView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="SettingsWinfow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UtakmicaView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -15,7 +24,16 @@
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="PlayerProfile.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="PostavaView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="SettingsWinfow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UtakmicaView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
