@@ -25,6 +25,7 @@ namespace WpfGui
         {
             InitializeComponent();
             this.Player = player;
+            lblNumber.Content = Player.ShirtNumber;
         }
         public PlayerProfile()
         {

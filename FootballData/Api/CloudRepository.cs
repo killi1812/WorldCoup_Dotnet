@@ -17,7 +17,6 @@ public class CloudRepository : IFootballRepository
 
         if (response.StatusCode == HttpStatusCode.BadRequest)
             throw new HttpRequestException("Invalid league gender");
-
         
         return await response.Content.ReadFromJsonAsync<IEnumerable<Match>>()
                ?? throw new HttpRequestException();

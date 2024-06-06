@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="NoProfile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FootballData\FootballData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="NoProfile.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="PlayerProfile.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="PostavaView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="SettingsWinfow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="UtakmicaView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

@@ -40,6 +40,8 @@ internal class TypeOfEventConverter : JsonConverter<TypeOfEvent>
                 return TypeOfEvent.YellowCard;
             case "yellow-card-second":
                 return TypeOfEvent.YellowCardSecond;
+            default:
+                return TypeOfEvent.RedCard;
         }
         throw new Exception("Cannot unmarshal type TypeOfEvent");
     }

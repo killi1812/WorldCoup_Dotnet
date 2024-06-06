@@ -1,5 +1,4 @@
-﻿using FootballData.Data.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,20 +16,13 @@ using System.Windows.Shapes;
 namespace WpfGui
 {
     /// <summary>
-    /// Interaction logic for PlayerProfile.xaml
+    /// Interaction logic for PostavaView.xaml
     /// </summary>
-    public partial class PlayerProfile : UserControl
+    public partial class PostavaView : UserControl
     {
-        public PlayerProfile(Player player)
-        {
-            InitializeComponent();
-            this.Player = player;
-        }
-        public PlayerProfile()
+        public PostavaView()
         {
             InitializeComponent();
         }
-        public Player Player { get;  set; }
-
     }
 }
