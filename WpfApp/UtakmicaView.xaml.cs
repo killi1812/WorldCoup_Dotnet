@@ -119,15 +119,14 @@ public partial class UtakmicaView : UserControl
             StringBuilder sb = new StringBuilder();
             //TODO find rezultat
 
-            var result =
-            getMatchBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
+            var result = GetResultBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
 
             lblResult.Content = $"Result {result.Item1} : {result.Item2}";
         }
 
     }
 
-    private (int, int) getMatchBetween(IEnumerable<Match> matches, string selectedValue1, string selectedValue2)
+    private (int, int) GetResultBetween(IEnumerable<Match> matches, string selectedValue1, string selectedValue2)
     {
         var HomeMatch = matches.Where(m => m.AwayTeamResult.FifaCode == selectedValue1 && m.HomeTeamResult.FifaCode == selectedValue2).FirstOrDefault();
         var AwayMatch = matches.Where(m => m.HomeTeamResult.FifaCode == selectedValue1 && m.AwayTeamResult.FifaCode == selectedValue2).FirstOrDefault();
@@ -135,6 +134,15 @@ public partial class UtakmicaView : UserControl
             return (HomeMatch.AwayTeamResult.Goals, HomeMatch.HomeTeamResult.Goals);
         return (AwayMatch.HomeTeamResult.Goals, AwayMatch.AwayTeamResult.Goals);
     }
+    private (TeamStatistics, TeamStatistics) GetMatchBetween(IEnumerable<Match> matches, string selectedValue1, string selectedValue2)
+    {
+        var HomeMatch = matches.Where(m => m.AwayTeamResult.FifaCode == selectedValue1 && m.HomeTeamResult.FifaCode == selectedValue2).FirstOrDefault();
+        var AwayMatch = matches.Where(m => m.HomeTeamResult.FifaCode == selectedValue1 && m.AwayTeamResult.FifaCode == selectedValue2).FirstOrDefault();
+        if (HomeMatch != null)
+            return (HomeMatch.AwayTeamStatistics, HomeMatch.HomeTeamStatistics);
+        return (AwayMatch.HomeTeamStatistics, AwayMatch.AwayTeamStatistics);
+    }
+
 
     private bool AreBothSelected()
     {

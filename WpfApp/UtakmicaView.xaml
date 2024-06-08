@@ -38,8 +38,8 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <local:PostavaView Width="auto" Grid.Column="0" Margin="5,5,10,5"/>
-            <local:PostavaView Width="auto" Grid.Column="2" Margin="10,5,5,5" />
+            <local:PostavaView x:Name="postavaFavorite" Width="auto" Grid.Column="0" Margin="5,5,10,5"/>
+            <local:PostavaView x:Name="postavaOpponent" Width="auto" Grid.Column="2" Margin="10,5,5,5" />
         </Grid>
     </Grid>
 </UserControl>
