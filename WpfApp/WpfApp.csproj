@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Lines_On_A_Football_Pitch.jpg" />
     <None Remove="NoProfile.png" />
   </ItemGroup>
 
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Lines_On_A_Football_Pitch.jpg" />
     <Resource Include="NoProfile.png" />
   </ItemGroup>
 

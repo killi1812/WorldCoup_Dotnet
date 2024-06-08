@@ -23,6 +23,19 @@ namespace WpfGui;
 /// <summary>
 /// Interaction logic for UtakmicaView.xaml
 /// </summary>
+
+/*
+     The3421,
+    The343,
+    The352,
+    The4231,
+    The4321,
+    The433,
+    The442,
+    The451,
+    The532,
+    The541
+ */
 public partial class UtakmicaView : UserControl
 {
     public UtakmicaView()
@@ -106,7 +119,7 @@ public partial class UtakmicaView : UserControl
             StringBuilder sb = new StringBuilder();
             //TODO find rezultat
 
-            var result =  
+            var result =
             getMatchBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
 
             lblResult.Content = $"Result {result.Item1} : {result.Item2}";
@@ -119,7 +132,7 @@ public partial class UtakmicaView : UserControl
         var HomeMatch = matches.Where(m => m.AwayTeamResult.FifaCode == selectedValue1 && m.HomeTeamResult.FifaCode == selectedValue2).FirstOrDefault();
         var AwayMatch = matches.Where(m => m.HomeTeamResult.FifaCode == selectedValue1 && m.AwayTeamResult.FifaCode == selectedValue2).FirstOrDefault();
         if (HomeMatch != null)
-            return (HomeMatch.AwayTeamResult.Goals,HomeMatch.HomeTeamResult.Goals) ;
+            return (HomeMatch.AwayTeamResult.Goals, HomeMatch.HomeTeamResult.Goals);
         return (AwayMatch.HomeTeamResult.Goals, AwayMatch.AwayTeamResult.Goals);
     }
 
@@ -146,7 +159,6 @@ public partial class UtakmicaView : UserControl
         {
             name = nameAway;
         }
-
 
         s.Golovi = matches.Where(m => m.HomeTeamCountry == name).Sum(m => m.HomeTeamResult.Goals) + matches.Where(m => m.AwayTeamCountry == name).Sum(m => m.AwayTeamResult.Goals);
         s.Primljeno = matches.Where(m => m.HomeTeamCountry != name).Sum(m => m.HomeTeamResult.Goals) + matches.Where(m => m.AwayTeamCountry != name).Sum(m => m.AwayTeamResult.Goals);
