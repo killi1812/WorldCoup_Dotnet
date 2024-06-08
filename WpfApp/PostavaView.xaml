@@ -6,11 +6,12 @@
              xmlns:local="clr-namespace:WpfGui"
              xmlns:TactisLayout="clr-namespace:WpfApp.TactisLayout" x:Class="WpfGui.PostavaView"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+    HorizontalAlignment="Stretch">
     <UserControl.Background>
-        <ImageBrush ImageSource="/Lines_On_A_Football_Pitch.jpg"/>
+        <ImageBrush ImageSource="./Lines_On_A_Football_Pitch.jpg"/>
     </UserControl.Background>
-    <Grid>
+    <Grid HorizontalAlignment="Stretch">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="auto"/>
