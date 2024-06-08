@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FootballData.Api;
+using FootballData.Data.Models;
+using FootballData.ProjectSettings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,17 @@ namespace WpfGui
         public PostavaView()
         {
             InitializeComponent();
+        }
+        private Match match;
+        public void SetMatch(Match m)
+        {
+            match = m;
+        }
+
+        private void SetPlayers()
+        {
+            var pozitions = match.AwayTeamStatistics.Tactics;
+
         }
     }
 }

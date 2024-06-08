@@ -24,14 +24,19 @@ namespace WpfGui
         public PlayerProfile(Player player)
         {
             InitializeComponent();
-            this.Player = player;
-            lblNumber.Content = Player.ShirtNumber;
+            SetPlayer(player);
         }
         public PlayerProfile()
         {
             InitializeComponent();
         }
-        public Player Player { get;  set; }
+        public Player Player { get; set; }
+        public void SetPlayer(Player player)
+        {
+            this.Player = player;
+            lblNumber.Content = Player.ShirtNumber;
+            lblTooltip.Content = Player.Name; 
+        }
 
     }
 }

@@ -5,19 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TabControl>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <local:UtakmicaView />
-                </Grid>
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5">
-                    <local:PostavaView />
-                </Grid>
-            </TabItem>
-        </TabControl>
+        Title="MainWindow" Height="850" Width="800">
+    <Grid HorizontalAlignment="Stretch">
+         <local:UtakmicaView />
     </Grid>
 </Window>
