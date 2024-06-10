@@ -1,0 +1,52 @@
+﻿using FootballData.Data.Models;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace WpfApp.TactisLayout
+{
+    /// <summary>
+    /// Interaction logic for The352.xaml
+    /// </summary>
+    public partial class The352 : UserControl, IPlayerPostava
+    {
+        public The352()
+        {
+            InitializeComponent();
+        }
+
+        public void SetPlayers(IEnumerable<Player> players, bool home)
+        {
+            if (home) Flip();
+            IEnumerator item = field.Children.GetEnumerator();
+            IPlayerPostava.SetPlayerProfiles(players, home, item);
+        }
+        private void Flip()
+        {
+            var children = field.Children.GetEnumerator();
+            List<UIElement> items = new();
+            while (children.MoveNext())
+            {
+                items.Add((UIElement)children.Current);
+            }
+            items.Reverse();
+            field.Children.Clear();
+            for (int i = 0; i < items.Count; i++)
+            {
+                Grid g =                    new Grid();
+            }
+        }
+    }
+}

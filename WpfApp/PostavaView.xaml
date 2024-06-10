@@ -11,7 +11,6 @@
     <UserControl.Background>
         <ImageBrush ImageSource="./Lines_On_A_Football_Pitch.jpg"/>
     </UserControl.Background>
-    <Grid HorizontalAlignment="Stretch">
-        <TactisLayout:The3421 x:Name="tacticsLayout"></TactisLayout:The3421>
+    <Grid x:Name="field" HorizontalAlignment="Stretch">
     </Grid>
 </UserControl>
