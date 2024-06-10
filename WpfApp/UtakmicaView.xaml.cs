@@ -120,8 +120,10 @@ public partial class UtakmicaView : UserControl
             //TODO find rezultat
 
             var result = GetResultBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
-
+            var matchStats = GetMatchBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
             lblResult.Content = $"Result {result.Item1} : {result.Item2}";
+            postavaFavorite.SetPlayers(matchStats.Item1, true);
+            postavaOpponent.SetPlayers(matchStats.Item2, false);
         }
 
     }

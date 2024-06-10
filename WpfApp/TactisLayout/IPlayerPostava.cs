@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WpfApp.TactisLayout
 {
-    internal interface IPlayerRow
+    internal interface IPlayerPostava
     {
-        public void SetPlayers(IEnumerable<Player> players);
+        public void SetPlayers(IEnumerable<Player> players, bool home);
     }
 }

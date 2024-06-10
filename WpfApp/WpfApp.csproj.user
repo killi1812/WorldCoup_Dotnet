@@ -7,12 +7,6 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="TactisLayout\3Row.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="TactisLayout\4Row.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="TactisLayout\The3421.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,12 +22,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="SettingsWinfow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="TactisLayout\3Row.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="TactisLayout\4Row.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TactisLayout\The3421.xaml">

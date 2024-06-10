@@ -33,10 +33,11 @@ namespace WpfGui
             match = m;
         }
 
-        private void SetPlayers()
+        public void SetPlayers(TeamStatistics stats, bool home)
         {
-            var pozitions = match.AwayTeamStatistics.Tactics;
-
+            var pozitions = stats.Tactics;
+            var players = stats.StartingEleven;
+            tacticsLayout.SetPlayers(players, home);
         }
     }
 }
