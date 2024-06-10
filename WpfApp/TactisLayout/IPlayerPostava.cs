@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WpfGui;
 
@@ -40,6 +41,20 @@ namespace WpfApp.TactisLayout
                 }
             }
         }
-
+        public static void Flip(Grid field)
+        {
+            var children = field.Children.GetEnumerator();
+            List<UIElement> items = new();
+            while (children.MoveNext())
+            {
+                items.Add((UIElement)children.Current);
+            }
+            field.Children.Clear();
+            for (int i = 0; i < items.Count; i++)
+            {
+                Grid.SetColumn(items[i], i);
+                field.Children.Add(items[i]);
+            }
+        }
     }
 }

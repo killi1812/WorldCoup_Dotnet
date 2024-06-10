@@ -29,24 +29,14 @@ namespace WpfApp.TactisLayout
 
         public void SetPlayers(IEnumerable<Player> players, bool home)
         {
-            if (home) Flip();
+            if (home)
+            {
+                IPlayerPostava.Flip(field);
+            }
+
             IEnumerator item = field.Children.GetEnumerator();
             IPlayerPostava.SetPlayerProfiles(players, home, item);
         }
-        private void Flip()
-        {
-            var children = field.Children.GetEnumerator();
-            List<UIElement> items = new();
-            while (children.MoveNext())
-            {
-                items.Add((UIElement)children.Current);
-            }
-            items.Reverse();
-            field.Children.Clear();
-            for (int i = 0; i < items.Count; i++)
-            {
-                Grid g =                    new Grid();
-            }
-        }
+
     }
 }

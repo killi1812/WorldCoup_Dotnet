@@ -73,6 +73,7 @@ namespace WpfGui
             }
             if (fieldTactics is UserControl control)
             {
+                field.Children.Clear();
                 field.Children.Add(control);
                 control.Visibility = Visibility.Visible;
             }
