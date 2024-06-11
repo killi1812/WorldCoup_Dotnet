@@ -31,6 +31,12 @@
     <Compile Update="TactisLayout\The451.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TactisLayout\The532.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TactisLayout\The541.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="MainWindow.xaml">
@@ -67,6 +73,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="TactisLayout\The451.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TactisLayout\The532.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TactisLayout\The541.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UtakmicaView.xaml">

@@ -1,10 +1,5 @@
 ﻿using FootballData.Data.Models;
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using WpfGui;
@@ -16,6 +11,7 @@ namespace WpfApp.TactisLayout
         public void SetPlayers(IEnumerable<Player> players, bool home);
         public static void SetPlayerProfiles(IEnumerable<Player> players, IEnumerator item)
         {
+            //TODO ne sortira igrace bas najbolje 
             IEnumerator<Player> penum = players.GetEnumerator();
             var profiles = new List<PlayerProfile>();
             while (item.MoveNext())

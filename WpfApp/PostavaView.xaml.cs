@@ -34,14 +34,13 @@ namespace WpfGui
         {
             var pozitions = stats.Tactics;
             SetPlayerTactics(pozitions);
+            //TODO order the players NOT by numbers
             var players = stats.StartingEleven;
             fieldTactics.SetPlayers(players, home);
         }
 
         public void SetPlayerTactics(Tactics t)
         {
-            //TODO remove
-            fieldTactics = new The352();
             switch (t)
             {
                 case Tactics.The3421:
@@ -69,8 +68,10 @@ namespace WpfGui
                     fieldTactics = new The451();
                     break;
                 case Tactics.The532:
+                    fieldTactics = new The532();
                     break;
                 case Tactics.The541:
+                    fieldTactics = new The541();
                     break;
                 default:
                     fieldTactics = new The3421();
