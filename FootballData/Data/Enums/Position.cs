@@ -5,10 +5,10 @@ namespace FootballData.Data.Enums;
 
 public enum Position
 {
-    Defender,
-    Forward,
-    Goalie,
-    Midfield
+    Goalie = 0,
+    Defender = 1,
+    Midfield = 2,
+    Forward = 3
 };
 
 internal class PositionConverter : JsonConverter<Position>

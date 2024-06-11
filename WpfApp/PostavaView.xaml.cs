@@ -34,8 +34,7 @@ namespace WpfGui
         {
             var pozitions = stats.Tactics;
             SetPlayerTactics(pozitions);
-            //TODO order the players NOT by numbers
-            var players = stats.StartingEleven;
+            var players = stats.StartingEleven.OrderBy(p => (p.Position));
             fieldTactics.SetPlayers(players, home);
         }
 
