@@ -1,18 +1,28 @@
 ﻿using FootballData.Data.Models;
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
-using WpfGui;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace WpfApp.TactisLayout
 {
     /// <summary>
-    /// Interaction logic for The3421.xaml
+    /// Interaction logic for The433.xaml
     /// </summary>
-    public partial class The3421 : UserControl, IPlayerPostava
+    public partial class The433 : UserControl, IPlayerPostava
     {
-        public The3421()
+        public The433()
         {
             InitializeComponent();
         }
@@ -22,8 +32,10 @@ namespace WpfApp.TactisLayout
             {
                 IPlayerPostava.Flip(field);
             }
+
             IEnumerator item = field.Children.GetEnumerator();
             IPlayerPostava.SetPlayerProfiles(players, item);
         }
+
     }
 }

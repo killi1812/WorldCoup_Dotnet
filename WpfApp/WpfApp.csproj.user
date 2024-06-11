@@ -10,7 +10,19 @@
     <Compile Update="TactisLayout\The3421.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="TactisLayout\The343.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="TactisLayout\The352.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TactisLayout\The4231.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TactisLayout\The4321.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="TactisLayout\The433.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -30,7 +42,19 @@
     <Page Update="TactisLayout\The3421.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="TactisLayout\The343.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="TactisLayout\The352.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TactisLayout\The4231.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TactisLayout\The4321.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="TactisLayout\The433.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UtakmicaView.xaml">

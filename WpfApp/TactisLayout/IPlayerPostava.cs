@@ -14,7 +14,7 @@ namespace WpfApp.TactisLayout
     internal interface IPlayerPostava
     {
         public void SetPlayers(IEnumerable<Player> players, bool home);
-        public static void SetPlayerProfiles(IEnumerable<Player> players, bool home, IEnumerator item)
+        public static void SetPlayerProfiles(IEnumerable<Player> players, IEnumerator item)
         {
             IEnumerator<Player> penum = players.GetEnumerator();
             var profiles = new List<PlayerProfile>();
@@ -27,11 +27,6 @@ namespace WpfApp.TactisLayout
             }
 
             if (profiles.Count > 11) throw new Exception("Kako ima vise od 11 igraca");
-            if (home)
-            {
-
-                //profiles.Reverse();
-            }
             var profilEnum = profiles.GetEnumerator();
             while (penum.MoveNext())
             {

@@ -33,12 +33,12 @@ namespace WpfGui
         public void SetPlayers(TeamStatistics stats, bool home)
         {
             var pozitions = stats.Tactics;
-            SetPlayerTactis(pozitions);
+            SetPlayerTactics(pozitions);
             var players = stats.StartingEleven;
             fieldTactics.SetPlayers(players, home);
         }
 
-        public void SetPlayerTactis(Tactics t)
+        public void SetPlayerTactics(Tactics t)
         {
             //TODO remove
             fieldTactics = new The352();
@@ -48,16 +48,18 @@ namespace WpfGui
                     fieldTactics = new The3421();
                     break;
                 case Tactics.The343:
+                    fieldTactics = new The343();
                     break;
                 case Tactics.The352:
                     fieldTactics = new The352();
                     break;
                 case Tactics.The4231:
-                    //hrv rusija
+                    fieldTactics = new The4231();
                     break;
                 case Tactics.The4321:
                     break;
                 case Tactics.The433:
+                    fieldTactics = new The433();
                     break;
                 case Tactics.The442:
                     break;
