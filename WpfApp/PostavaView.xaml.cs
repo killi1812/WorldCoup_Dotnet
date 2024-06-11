@@ -57,13 +57,16 @@ namespace WpfGui
                     fieldTactics = new The4231();
                     break;
                 case Tactics.The4321:
+                    fieldTactics = new The4321();
                     break;
                 case Tactics.The433:
                     fieldTactics = new The433();
                     break;
                 case Tactics.The442:
+                    fieldTactics = new The442();
                     break;
                 case Tactics.The451:
+                    fieldTactics = new The451();
                     break;
                 case Tactics.The532:
                     break;

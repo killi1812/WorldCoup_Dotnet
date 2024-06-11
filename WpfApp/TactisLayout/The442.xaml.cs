@@ -5,11 +5,11 @@ using System.Windows.Controls;
 namespace WpfApp.TactisLayout
 {
     /// <summary>
-    /// Interaction logic for The4321.xaml
+    /// Interaction logic for The442.xaml
     /// </summary>
-    public partial class The4321 : UserControl, IPlayerPostava
+    public partial class The442 : UserControl, IPlayerPostava
     {
-        public The4321()
+        public The442()
         {
             InitializeComponent();
         }
@@ -23,5 +23,6 @@ namespace WpfApp.TactisLayout
             IEnumerator item = field.Children.GetEnumerator();
             IPlayerPostava.SetPlayerProfiles(players, item);
         }
+
     }
 }
