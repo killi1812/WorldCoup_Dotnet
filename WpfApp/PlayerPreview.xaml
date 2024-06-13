@@ -5,15 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="PlayerPreview" Height="450" Width="450">
+        Title="PlayerPreview" Height="250" Width="450">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Image x:Name="imgPlayer" HorizontalAlignment="Left" Height="150"  VerticalAlignment="Top" Width="130" Margin="45,30,0,0" Grid.Column="1" Source="/NoProfile.png"/>
+        <TextBlock x:Name="PlayerStats" HorizontalAlignment="Right" Margin="0,30,30,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Height="150" Width="130"/>
+        <Button Content="Button" Grid.ColumnSpan="2" Margin="0,0,0,10" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="100"/>
     </Grid>
 </Window>

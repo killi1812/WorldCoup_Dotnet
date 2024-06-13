@@ -7,7 +7,7 @@ namespace FootballData.Api;
 
 public class CloudRepository : IFootballRepository
 {
-    private readonly Settings _settings = Settings.GetSettings();
+    private readonly AppRepo _settings = AppRepo.GetSettings();
 
     public async Task<IEnumerable<Match>> GetMatches()
     {

@@ -26,7 +26,7 @@ namespace WpfGui
         }
         private void loadSettings(object sender)
         {
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             
             
         }
@@ -35,7 +35,7 @@ namespace WpfGui
         {
             if (sender is RadioButton button)
             {
-                Settings settings = Settings.GetSettings();
+                AppRepo settings = AppRepo.GetSettings();
                 string s = (string)button.Content;
                 settings.Values.Language = s;
             }
@@ -43,7 +43,7 @@ namespace WpfGui
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Settings s = Settings.GetSettings();
+            AppRepo s = AppRepo.GetSettings();
             await s.SaveSettingsAsync();
             this.Close();
         }

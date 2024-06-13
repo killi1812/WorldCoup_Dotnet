@@ -1,8 +1,9 @@
-﻿using System.Text;
+﻿using FootballData.Data.Models;
+using System.Text;
 
 namespace FootballData.ProjectSettings
 {
-    public class SettingsValues
+    public class Settings
     {
         public string ConfigPath { get; set; }
 
@@ -15,6 +16,7 @@ namespace FootballData.ProjectSettings
         public List<string> FavoritePlayers { get; set; }
 
         public int Repository { get; set; }
+        public (int, int) Rezolucija { get; set; }
 
         public string FavoritTimeFifaCode { get; set; }
         public override string ToString()
@@ -30,35 +32,37 @@ namespace FootballData.ProjectSettings
         }
     }
 
-    public class Settings
+    public class AppRepo
     {
-        public SettingsValues Values { get; private set; }
+        public Settings Values { get; private set; }
         public bool IsNew { get; private set; } = false;
 
-        private Settings()
+        private AppRepo()
         {
             Values = ParseSettings(ReadSettings());
         }
 
         static private readonly object _oLock = new();
-        static private Settings? _settingsRepo = null;
+        static private AppRepo? _settingsRepo = null;
 
-        public static Settings GetSettings()
+        public static AppRepo GetSettings()
         {
             lock (_oLock)
             {
-                _settingsRepo ??= new Settings();
+                _settingsRepo ??= new AppRepo();
                 return _settingsRepo;
             }
         }
 
         private const string _fileName = "worldCup.conf";
-
+        private readonly string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WorldCupApp_FranCvok");
+        //TODO rewrite to use json this method is to Stupide 
         private string? ReadSettings()
         {
             var filename = FileName();
             if (!File.Exists(filename))
             {
+                Directory.CreateDirectory(path);
                 IsNew = true;
                 return null;
             }
@@ -66,10 +70,10 @@ namespace FootballData.ProjectSettings
             return reader.ReadToEnd();
         }
 
-        static private SettingsValues ParseSettings(string? content)
+        static private Settings ParseSettings(string? content)
         {
             if (content == null)
-                return new SettingsValues
+                return new Settings
                 {
                     ConfigPath = "./",
                     DataPath = "RiderProjects/OOP_dotnet_praktikum_Fran_Cvok/worldcup.sfg.io",
@@ -78,7 +82,7 @@ namespace FootballData.ProjectSettings
                     Repository = 1,
                 };
             string[] lines = content.Split('\n');
-            SettingsValues settingsValues = new();
+            Settings settingsValues = new();
             Dictionary<string, string> settingsDict = new();
 
             foreach (string line in lines)
@@ -105,7 +109,8 @@ namespace FootballData.ProjectSettings
                         var a = 5;
                         break;
                     default:
-                        throw new NotImplementedException();
+                        var b = 5;
+                        break;
                 }
             }
             return settingsValues;
@@ -127,10 +132,24 @@ namespace FootballData.ProjectSettings
 
         private string FileName()
         {
-            string? path = Values?.ConfigPath;
             if (path == null) return _fileName;
-            if (path.Last() != '/') path += '/';
+            if (path.Last() != '/')
+                return Path.Combine(path, _fileName);
             return $"{path}{_fileName}";
+        }
+
+        public static void SaveImage(string img_path, string playerName)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WorldCupApp_FranCvok");
+            File.Copy(img_path, Path.Combine(path, playerName), true);
+        }
+
+        public static string? GetImagePath(string playerName)
+        {
+            string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WorldCupApp_FranCvok");
+            if (!File.Exists(Path.Combine(path, playerName)))
+                return null;
+            return Path.Combine(path, playerName);
         }
     }
 }

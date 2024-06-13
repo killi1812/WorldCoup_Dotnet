@@ -26,8 +26,8 @@ namespace FormGui
 
         private void SetLengauge()
         {
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AppRepo.GetSettings().Values.Language);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppRepo.GetSettings().Values.Language);
         }
 
         public string Name { get; private set; }
@@ -42,10 +42,9 @@ namespace FormGui
         }
         public void LoadPicture()
         {
-            if (File.Exists(Name))
-            {
-                pictureBox2.ImageLocation = Name;
-            }
+                var imgPath = AppRepo.GetImagePath(this.Name);
+                if (imgPath == null) return;
+                pictureBox2.ImageLocation = imgPath;
         }
         private void addPicture()
         {
@@ -53,9 +52,10 @@ namespace FormGui
             var result = fileDialog.ShowDialog();
             if (result == DialogResult.OK)
             {
-                //TODO save picture for local path 
-                File.Copy(fileDialog.FileName, $"{this.Name}", true);
-                pictureBox2.ImageLocation = this.Name;
+                AppRepo.SaveImage(fileDialog.FileName,this.Name);
+                var imgPath = AppRepo.GetImagePath(this.Name);
+                if (imgPath == null) return;
+                pictureBox2.ImageLocation = imgPath;
             }
         }
         private void label1_Click(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using FootballData.Data.Models;
+using FootballData.ProjectSettings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp;
 
 namespace WpfGui
 {
@@ -25,6 +27,7 @@ namespace WpfGui
         {
             InitializeComponent();
             SetPlayer(player);
+            setImg();
         }
         public PlayerProfile()
         {
@@ -35,12 +38,21 @@ namespace WpfGui
         {
             this.Player = player;
             lblNumber.Content = Player.ShirtNumber;
-            lblTooltip.Content = Player.Name; 
+            lblTooltip.Content = Player.Name;
+            setImg();
+        }
+        private void setImg()
+        {
+            string path = AppRepo.GetImagePath(Player.Name);
+            if (path == null) return;
+            imgPlayer.Source = new BitmapImage(new Uri(path));
         }
 
-        private void StackPanel_KeyUp(object sender, KeyEventArgs e)
+        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //TODO add opening for preveiw send player
+            var pp = new PlayerPreview(Player);
+            pp.ShowDialog();
+
         }
     }
 }

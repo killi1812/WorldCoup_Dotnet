@@ -39,7 +39,7 @@ public class LocalRepository : IFootballRepository
 
     private async Task<string> ReadFileAsync(string fileName)
     {
-        Settings setting = Settings.GetSettings();
+        AppRepo setting = AppRepo.GetSettings();
         string name = setting.Values.DataPath == null
             ? $"{setting.Values.LeagueGender}/{fileName}"
             : $"{setting.Values.DataPath}/{setting.Values.LeagueGender}/{fileName}";

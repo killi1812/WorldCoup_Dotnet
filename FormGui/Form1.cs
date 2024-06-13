@@ -16,8 +16,8 @@ namespace FormGui
         }
         private void SetLengauge()
         {
-            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(Settings.GetSettings().Values.Language);
+            Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo(AppRepo.GetSettings().Values.Language);
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(AppRepo.GetSettings().Values.Language);
         }
         private async Task RefreshAsync()
         {
@@ -29,7 +29,7 @@ namespace FormGui
         }
         private async void MainForm_Show(object sender, EventArgs e)
         {
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             if (settings.IsNew)
             {
                 SettingsForm settingsForm = new();
@@ -39,7 +39,7 @@ namespace FormGui
         }
         private async void saveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             settings.Values.FavoritePlayers = await favoritePlayerView1.GetFavortePlayers();
             await settings.SaveSettingsAsync();
             await LoadTeams();
@@ -60,7 +60,7 @@ namespace FormGui
         {
             var teams = await fetchTeams();
             cmbRep.Items.AddRange(teams.ToArray());
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
         }
 
@@ -69,7 +69,7 @@ namespace FormGui
             try
             {
                 cmbRep.Items.Clear();
-                Settings settings = Settings.GetSettings();
+                AppRepo settings = AppRepo.GetSettings();
                 return (await repo.GetTeams()).Select(t => t.FifaCode).Order();
             }
             catch (Exception err)
@@ -82,7 +82,7 @@ namespace FormGui
 
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             string team = cmbRep.SelectedItem.ToString()!;
             settings.Values.FavoritTimeFifaCode = team;
             await favoritePlayerView1.SetTeam(team);

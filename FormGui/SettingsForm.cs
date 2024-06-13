@@ -13,10 +13,10 @@ namespace FormGui
 {
     public partial class SettingsForm : Form
     {
-        private Settings _settings;
+        private AppRepo _settings;
         public SettingsForm()
         {
-            _settings = Settings.GetSettings();
+            _settings = AppRepo.GetSettings();
             InitializeComponent();
         }
 

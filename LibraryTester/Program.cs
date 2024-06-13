@@ -3,12 +3,12 @@ using FootballData.Data;
 using FootballData.Data.Enums;
 using FootballData.ProjectSettings;
 
-var settings = Settings.GetSettings();
+var settings = AppRepo.GetSettings();
 
 settings.Values.Repository = 0;
 Console.WriteLine(settings.Values);
 
-IFootballRepository repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
+IFootballRepository repo = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
 var matches = repo.GetMatches();
 
 Console.Write("Waiting for data");

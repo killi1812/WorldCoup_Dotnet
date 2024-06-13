@@ -15,7 +15,7 @@ namespace FormGui
         {
             InitializeComponent();
             //TODO null check
-            repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
+            repo = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
         }
         private IFootballRepository repo;
         public string? team;

@@ -4,8 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfGui"
-             mc:Ignorable="d" d:DesignWidth="60" Height="90">
-    <StackPanel Margin="0,0,0,0" KeyUp="StackPanel_KeyUp">
+             mc:Ignorable="d" d:DesignWidth="60" Height="90"
+             MouseDoubleClick="UserControl_MouseDoubleClick"
+>
+    <StackPanel Margin="0,0,0,0">
         <Image x:Name="imgPlayer" HorizontalAlignment="Center" Height="60"  VerticalAlignment="Top" Width="60" Source="/NoProfile.png"/>
         <Label x:Name="lblNumber" Content="Label" Margin="0,0,0,0" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" />
         <StackPanel.ToolTip>

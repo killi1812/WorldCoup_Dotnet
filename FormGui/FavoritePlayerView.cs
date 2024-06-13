@@ -10,7 +10,7 @@ namespace FormGui
         public FavoritePlayerView()
         {
             InitializeComponent();
-            repo = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
+            repo = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
             label1.Text = "";
         }
 
@@ -126,7 +126,7 @@ namespace FormGui
             var count = pnlFavorite.Controls.Count;
             if (count > 3)
             {
-                var b = Settings.GetSettings().Values.Language;
+                var b = AppRepo.GetSettings().Values.Language;
                 label1.Text = b == "en" ? "Max 3 players" : "Najviše 3 igrača";
                 label1.Show();
             }
@@ -228,7 +228,7 @@ namespace FormGui
 
         private async void cmbRep_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Settings settings = Settings.GetSettings();
+            AppRepo settings = AppRepo.GetSettings();
             string teamCode = team;
             settings.Values.FavoritTimeFifaCode = teamCode;
             await LoadPlayers();

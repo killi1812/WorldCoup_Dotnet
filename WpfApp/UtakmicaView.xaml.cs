@@ -41,7 +41,7 @@ public partial class UtakmicaView : UserControl
     public UtakmicaView()
     {
         InitializeComponent();
-        api = FootballRepositoryFactory.GetRepository(Settings.GetSettings().Values.Repository);
+        api = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
         //api = FootballRepositoryFactory.GetRepository(1);
         LoadTeams();
     }
@@ -117,8 +117,6 @@ public partial class UtakmicaView : UserControl
         if (AreBothSelected())
         {
             StringBuilder sb = new StringBuilder();
-            //TODO find rezultat
-
             var result = GetResultBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
             var matchStats = GetMatchBetween(matches, (string)cmbFavorite.SelectedValue, (string)cmbOpponed.SelectedValue);
             lblResult.Content = $"Result {result.Item1} : {result.Item2}";
@@ -141,11 +139,12 @@ public partial class UtakmicaView : UserControl
         var HomeMatch = matches.Where(m => m.AwayTeamResult.FifaCode == selectedValue1 && m.HomeTeamResult.FifaCode == selectedValue2).FirstOrDefault();
         var AwayMatch = matches.Where(m => m.HomeTeamResult.FifaCode == selectedValue1 && m.AwayTeamResult.FifaCode == selectedValue2).FirstOrDefault();
 
-        HomeMatch = CalculatePlayerStats(HomeMatch);
-        AwayMatch = CalculatePlayerStats(AwayMatch);
-        //TODO Calculate stats foreach player and set them to Player.statsForCurrentGame
         if (HomeMatch != null)
+        {
+            HomeMatch = CalculatePlayerStats(HomeMatch);
             return (HomeMatch.AwayTeamStatistics, HomeMatch.HomeTeamStatistics);
+        }
+        AwayMatch = CalculatePlayerStats(AwayMatch);
         return (AwayMatch.HomeTeamStatistics, AwayMatch.AwayTeamStatistics);
     }
 
@@ -204,10 +203,10 @@ public class Stats
 
     public override string ToString()
     {
-        bool lang = Settings.GetSettings().Values.Language == "en";
+        bool lang = AppRepo.GetSettings().Values.Language == "en";
         if (lang)
             return $"Matches played: \t{Utakmice}\nWins: \t\t{Pobjeda}\nLoses: \t\t{Poraza}\nTies: \t\t{Neodluceno}\nGoals: \t\t{Golovi}\nGoals taken: \t{Primljeno}\nDifference: \t{Golovi - Primljeno}\n";
         //TODO translate
-        return $"Matches played: \t{Utakmice}\nWins: \t{Pobjeda}\nLoses: \t{Poraza}\nTies: \t{Neodluceno}\nGoals: \t{Golovi}\nGoals taken: \t{Primljeno}\nDifference: \t{Golovi - Primljeno}\n";
+        return $"Broj Utakmica: \t{Utakmice}\nPobjeda: \t{Pobjeda}\nPorazi: \t{Poraza}\nIzjednačeno: \t{Neodluceno}\nGolovi: \t{Golovi}\nPrimljeni Golovi: \t{Primljeno}\nRazlika: \t{Golovi - Primljeno}\n";
     }
 }

@@ -9,17 +9,7 @@ internal static class Program
     {
         // To customize application configuration such as set high DPI settings or default font,
         // see https://aka.ms/applicationconfiguration.
-        try
-        {
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-        }
-        catch
-        (Exception ex)
-        {
-            Console.WriteLine(ex.ToString());
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
-        }
+        ApplicationConfiguration.Initialize();
+        Application.Run(new Form1());
     }
 }
