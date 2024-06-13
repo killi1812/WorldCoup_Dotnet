@@ -1,5 +1,7 @@
 ﻿using FootballData.Data.Models;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FootballData.ProjectSettings
 {
@@ -39,7 +41,7 @@ namespace FootballData.ProjectSettings
 
         private AppRepo()
         {
-            Values = ParseSettings(ReadSettings());
+            Values = ReadSettings();
         }
 
         static private readonly object _oLock = new();
@@ -57,63 +59,26 @@ namespace FootballData.ProjectSettings
         private const string _fileName = "worldCup.conf";
         private readonly string path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "WorldCupApp_FranCvok");
         //TODO rewrite to use json this method is to Stupide 
-        private string? ReadSettings()
+        private Settings ReadSettings()
         {
             var filename = FileName();
             if (!File.Exists(filename))
             {
                 Directory.CreateDirectory(path);
                 IsNew = true;
-                return null;
-            }
-            using StreamReader reader = new(filename);
-            return reader.ReadToEnd();
-        }
-
-        static private Settings ParseSettings(string? content)
-        {
-            if (content == null)
                 return new Settings
                 {
-                    ConfigPath = "./",
-                    DataPath = "RiderProjects/OOP_dotnet_praktikum_Fran_Cvok/worldcup.sfg.io",
                     Language = "en",
-                    LeagueGender = "men",
                     Repository = 1,
+                    LeagueGender = "men"
+
                 };
-            string[] lines = content.Split('\n');
-            Settings settingsValues = new();
-            Dictionary<string, string> settingsDict = new();
-
-            foreach (string line in lines)
-            {
-                if (settingsDict.ContainsKey(line)) continue;
-                string[] s = line.Split('=');
-                if (s.Length != 2) continue;
-                settingsDict.Add(s[0].Trim(), s[1].Trim());
             }
-
-            foreach (var prop in settingsValues.GetType().GetProperties())
-            {
-                if (!settingsDict.ContainsKey(prop.Name)) continue;
-
-                switch (prop.PropertyType.Name)
-                {
-                    case "Int32":
-                        prop.SetValue(settingsValues, int.Parse(settingsDict[prop.Name]));
-                        break;
-                    case "String":
-                        prop.SetValue(settingsValues, settingsDict[prop.Name]);
-                        break;
-                    case "List`1":
-                        var a = 5;
-                        break;
-                    default:
-                        var b = 5;
-                        break;
-                }
-            }
-            return settingsValues;
+            using StreamReader reader = new(filename);
+            var settings = new Settings();
+            var stream = reader.BaseStream;
+            settings = JsonSerializer.DeserializeAsync<Settings>(stream).Result;
+            return settings;
         }
 
         public async Task<bool> SaveSettingsAsync()
@@ -121,7 +86,8 @@ namespace FootballData.ProjectSettings
             try
             {
                 await using StreamWriter writer = new(FileName());
-                await writer.WriteAsync(Values.ToString());
+                var json = JsonSerializer.Serialize(Values);
+                await writer.WriteAsync(json);
             }
             catch
             {
