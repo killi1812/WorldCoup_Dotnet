@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfGui
+namespace WpfApp
 {
     /// <summary>
-    /// Interaction logic for UtakmicaView.xaml
+    /// Interaction logic for PlayerPreview.xaml
     /// </summary>
-    public partial class UtakmicaView : UserControl
+    public partial class PlayerPreview : Window
     {
-        public UtakmicaView()
+        public PlayerPreview()
         {
             InitializeComponent();
         }

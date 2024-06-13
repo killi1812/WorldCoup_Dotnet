@@ -38,5 +38,9 @@ namespace WpfGui
             lblTooltip.Content = Player.Name; 
         }
 
+        private void StackPanel_KeyUp(object sender, KeyEventArgs e)
+        {
+            //TODO add opening for preveiw send player
+        }
     }
 }

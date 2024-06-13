@@ -140,11 +140,29 @@ public partial class UtakmicaView : UserControl
     {
         var HomeMatch = matches.Where(m => m.AwayTeamResult.FifaCode == selectedValue1 && m.HomeTeamResult.FifaCode == selectedValue2).FirstOrDefault();
         var AwayMatch = matches.Where(m => m.HomeTeamResult.FifaCode == selectedValue1 && m.AwayTeamResult.FifaCode == selectedValue2).FirstOrDefault();
+
+        HomeMatch = CalculatePlayerStats(HomeMatch);
+        AwayMatch = CalculatePlayerStats(AwayMatch);
+        //TODO Calculate stats foreach player and set them to Player.statsForCurrentGame
         if (HomeMatch != null)
             return (HomeMatch.AwayTeamStatistics, HomeMatch.HomeTeamStatistics);
         return (AwayMatch.HomeTeamStatistics, AwayMatch.AwayTeamStatistics);
     }
 
+    private Match CalculatePlayerStats(Match match)
+    {
+        var events = match.AwayTeamEvents.Concat(match.HomeTeamEvents);
+
+        var awayPlayers = match.AwayTeamStatistics.StartingEleven.ToList();
+        awayPlayers.ForEach(p => p.playerEventsForCurrentGame = events.Where(ev => ev.Player == p.Name).ToList());
+        var homePlayers = match.HomeTeamStatistics.StartingEleven.ToList();
+        homePlayers.ForEach(p => p.playerEventsForCurrentGame = events.Where(ev => ev.Player == p.Name).ToList());
+
+        match.HomeTeamStatistics.StartingEleven = homePlayers;
+        match.AwayTeamStatistics.StartingEleven = awayPlayers;
+
+        return match;
+    }
 
     private bool AreBothSelected()
     {

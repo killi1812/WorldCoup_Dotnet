@@ -17,4 +17,7 @@ public class Player
     [JsonPropertyName("position")]
     [JsonConverter(typeof(PositionConverter))]
     public Position Position { get; set; }
+
+    //Ovo je najgori programming practice
+    public List<TeamEvent>? playerEventsForCurrentGame { get; set; }
 }
