@@ -70,7 +70,8 @@ namespace FootballData.ProjectSettings
                 {
                     Language = "en",
                     Repository = 1,
-                    LeagueGender = "men"
+                    LeagueGender = "men",
+                    DataPath = Directory.GetCurrentDirectory()
 
                 };
             }
