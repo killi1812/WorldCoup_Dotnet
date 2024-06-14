@@ -27,7 +27,7 @@ namespace WpfGui
         private void loadSettings(object sender)
         {
             AppRepo settings = AppRepo.GetSettings();
-            
+               
             
         }
 

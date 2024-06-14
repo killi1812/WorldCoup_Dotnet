@@ -9,26 +9,32 @@
        >
     <Grid Margin="0,0,0,0">
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="2*" />
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Margin="15,15,10,15" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">
+        <StackPanel Margin="15,30,10,15" Width="100" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Column="0" Grid.Row="0">
             <RadioButton Content="en" Margin="5" Checked="RadioButton_Checked"/>
             <RadioButton Content="hr" Margin="5" Checked="RadioButton_Checked"/>
         </StackPanel>
 
-        <StackPanel Margin="15,15,10,15" Width="100" VerticalAlignment="Bottom" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0">
+        <StackPanel Margin="15,30,10,15" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Column="1" Grid.Row="0">
             <RadioButton Content="Man" Margin="5" IsChecked="True" Checked="RadioButton_Checked" />
             <RadioButton Content="Woman" Margin="5" Checked="RadioButton_Checked" />
         </StackPanel>
-
-        <Button Content="Ok" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,30,10,0" Width="50" Height="20" Grid.Column="0" Grid.Row="1" IsDefault="True" Click="Button_Click"/>
-        <Button Content="Cancle" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0"  Width="50" Height="20" Grid.Column="1" Grid.Row="1" Click="Button_Click_1"/>
+        <StackPanel Margin="0,30,0,0" Width="100" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="0" Grid.RowSpan="2">
+            <RadioButton Content="FullScreen" Margin="5" IsChecked="True" Checked="RadioButton_Checked" />
+            <RadioButton Content="1200x1200" Margin="5" Checked="RadioButton_Checked" />
+            <RadioButton Content="900x900" Margin="5" Checked="RadioButton_Checked" />
+            <RadioButton Content="600x600" Margin="5" Checked="RadioButton_Checked" />
+        </StackPanel>
+        <Button Content="Ok" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,30,0,0" Width="50" Height="20" Grid.Column="1" Grid.Row="1" IsDefault="True" Click="Button_Click"/>
+        <Button Content="Cancle" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,30,10,0"  Width="50" Height="20" Grid.Column="1" Grid.Row="1" Click="Button_Click_1"/>
 
     </Grid>
 </Window>
