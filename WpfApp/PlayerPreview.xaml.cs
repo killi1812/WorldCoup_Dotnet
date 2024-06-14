@@ -59,5 +59,10 @@ namespace WpfApp
             if (path == null) return;
             imgPlayer.Source = new BitmapImage(new Uri(path));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

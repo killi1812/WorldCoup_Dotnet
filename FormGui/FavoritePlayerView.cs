@@ -98,7 +98,7 @@ namespace FormGui
                 item.MouseDown += (obj, ev) =>
                 {
                     if (ev.Button != MouseButtons.Left) return;
-                    var selected = (PlayerLabel)obj;
+                    PlayerLabel? selected = (PlayerLabel)obj;
                     if (selectedLabels.Contains(selected))
                     {
                         foreach (PlayerLabel label in selectedLabels)
@@ -119,7 +119,15 @@ namespace FormGui
                 };
                 list.Add(item);
             }
+            List<string> fp = AppRepo.GetSettings().Values.FavoritePlayers;
+            PlayerLabel[] favoritePlayers = list.Where(p => fp.Contains(p.Name)).ToArray();
+            foreach (PlayerLabel player in favoritePlayers)
+            {
+                player.setFavorite(true);
+            }
+            list.RemoveAll(p => fp.Contains(p.Name));
             pnlIgraci.Controls.AddRange(list.ToArray());
+            pnlFavorite.Controls.AddRange(favoritePlayers.ToArray());
         }
         private void ShowError()
         {
@@ -129,6 +137,7 @@ namespace FormGui
                 var b = AppRepo.GetSettings().Values.Language;
                 label1.Text = b == "en" ? "Max 3 players" : "Najviše 3 igrača";
                 label1.Show();
+                return;
             }
             label1.Hide();
         }

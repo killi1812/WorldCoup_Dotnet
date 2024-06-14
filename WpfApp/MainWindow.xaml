@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfGui"
         mc:Ignorable="d"
-        Title="MainWindow" Height="850" Width="950"
+        Title="MainWindow" Height="650" Width="950"
         HorizontalAlignment="Stretch">
     <local:UtakmicaView Height="auto" Width="auto" />
 </Window>
