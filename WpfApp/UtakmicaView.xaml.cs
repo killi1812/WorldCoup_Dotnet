@@ -34,7 +34,7 @@ public partial class UtakmicaView : UserControl
         LoadTeams();
     }
 
-    private async void LoadTeams()
+    public async void LoadTeams()
     {
         teams = await api.GetTeams();
         cmbFavorite.ItemsSource = teams.Select(t => t.FifaCode);

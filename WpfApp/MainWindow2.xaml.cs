@@ -28,7 +28,8 @@ namespace WpfApp
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             var settingsWindow = new SettingsWinfow();
-            settingsWindow.ShowDialog();
+            var result = settingsWindow.ShowDialog();
+            main.LoadTeams(); 
         }
     }
 }

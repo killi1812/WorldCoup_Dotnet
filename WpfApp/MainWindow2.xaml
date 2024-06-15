@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow2" Height="450" Width="800">
     <Grid>
-        <WpfGui:UtakmicaView Margin="0,9,0,10"/>
+        <WpfGui:UtakmicaView x:Name="main" Margin="0,9,0,10"/>
         <Button  x:Name="btnSettings" Content="Settings" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Click="btnSettings_Click"/>
     </Grid>
 </Window>
