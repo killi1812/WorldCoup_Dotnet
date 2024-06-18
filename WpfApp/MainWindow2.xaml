@@ -4,11 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
-        xmlns:WpfGui="clr-namespace:WpfGui" x:Class="WpfApp.MainWindow2"
+        xmlns:WpfGui="clr-namespace:WpfGui" x:Name="window" x:Class="WpfApp.MainWindow2"
         mc:Ignorable="d"
         Title="MainWindow2" Height="450" Width="800">
     <Grid>
         <WpfGui:UtakmicaView x:Name="main" Margin="0,9,0,10"/>
         <Button  x:Name="btnSettings" Content="Settings" Width="100" Height="20" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0" Click="btnSettings_Click"/>
+        <!--<DockPanel x:Name="loadingPnl" Visibility="{Binding ElementName=window, Path=main.loading}" Height="{Binding ActualWidth.MaxValue, ElementName=label}" Width="{Binding ActualHeight.MaxValue, ElementName=main}" Background="White">
+            <Label Content="loading" HorizontalAlignment="Center" VerticalAlignment="Center">
+            </Label>
+        </DockPanel>-->
     </Grid>
 </Window>

@@ -29,14 +29,25 @@ public partial class UtakmicaView : UserControl
     public UtakmicaView()
     {
         InitializeComponent();
-        api = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
-        //api = FootballRepositoryFactory.GetRepository(1);
+        //api = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
+        api = FootballRepositoryFactory.GetRepository();
         LoadTeams();
     }
 
+    public bool loading = false;
     public async void LoadTeams()
     {
-        teams = await api.GetTeams();
+        loading = true;
+        try
+        {
+            teams = await api.GetTeams();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex);
+            return;
+        }
+        finally { loading = false; }
         cmbFavorite.ItemsSource = teams.Select(t => t.FifaCode);
         var favTeam = AppRepo.GetSettings().Values.FavoritTimeFifaCode;
         if (String.IsNullOrEmpty(favTeam)) return;

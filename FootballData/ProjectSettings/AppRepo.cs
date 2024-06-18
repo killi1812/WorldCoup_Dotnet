@@ -71,7 +71,7 @@ namespace FootballData.ProjectSettings
                     Language = "en",
                     Repository = 1,
                     LeagueGender = "men",
-                    DataPath = Directory.GetCurrentDirectory()
+                    DataPath = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\..\worldcup.sfg.io"))
 
                 };
             }
