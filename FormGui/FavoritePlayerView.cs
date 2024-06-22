@@ -15,7 +15,6 @@ namespace FormGui
         }
 
         private List<PlayerLabel> selectedLabels = new List<PlayerLabel>();
-        private bool _loading = false;
         private bool clear = false;
         private string? team;
         private IFootballRepository repo;
@@ -120,14 +119,17 @@ namespace FormGui
                 list.Add(item);
             }
             List<string> fp = AppRepo.GetSettings().Values.FavoritePlayers;
-            PlayerLabel[] favoritePlayers = list.Where(p => fp.Contains(p.Name)).ToArray();
-            foreach (PlayerLabel player in favoritePlayers)
+            if (fp != null)
             {
-                player.setFavorite(true);
+                PlayerLabel[] favoritePlayers = list.Where(p => fp.Contains(p.Name)).ToArray();
+                foreach (PlayerLabel player in favoritePlayers)
+                {
+                    player.setFavorite(true);
+                }
+                list.RemoveAll(p => fp.Contains(p.Name));
+                pnlFavorite.Controls.AddRange(favoritePlayers.ToArray());
             }
-            list.RemoveAll(p => fp.Contains(p.Name));
             pnlIgraci.Controls.AddRange(list.ToArray());
-            pnlFavorite.Controls.AddRange(favoritePlayers.ToArray());
         }
         private void ShowError()
         {

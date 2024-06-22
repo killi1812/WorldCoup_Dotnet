@@ -8,6 +8,19 @@ namespace FormGui
         public IEnumerable<string> teams { get; set; }
 
         private IFootballRepository repo;
+        private void startLoading()
+        {
+            this.Controls.Clear();
+            this.Controls.Add(new Label()
+            {
+                Text = "Loadig"
+            });
+        }
+        private void stopLoading()
+        {
+            this.Controls.Clear();
+            InitializeComponent();
+        }
         public Form1()
         {
             SetLengauge();
@@ -58,7 +71,9 @@ namespace FormGui
         }
         private async Task LoadTeams()
         {
+            startLoading();
             var teams = await fetchTeams();
+            stopLoading();
             cmbRep.Items.AddRange(teams.ToArray());
             AppRepo settings = AppRepo.GetSettings();
             cmbRep.SelectedItem = settings.Values.FavoritTimeFifaCode;
@@ -95,7 +110,7 @@ namespace FormGui
             int index = tabs.SelectedIndex;
             var tab = tabs.Controls[index];
 
-            if(tab.Controls[0] is IPrintable printable)
+            if (tab.Controls[0] is IPrintable printable)
             {
                 printable.Print();
             }

@@ -1,17 +1,6 @@
 ﻿using FootballData.ProjectSettings;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace WpfGui
 {
@@ -28,7 +17,6 @@ namespace WpfGui
         private void loadSettings()
         {
             AppRepo settings = AppRepo.GetSettings();
-
 
             var lang = grpLang.Children;
             foreach (RadioButton item in lang)
@@ -85,8 +73,6 @@ namespace WpfGui
                 settings.Values.Rezolucija = (first, second);
             }
         }
-
-
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
