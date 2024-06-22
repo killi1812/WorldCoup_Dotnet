@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WpfGui"
              mc:Ignorable="d" 
-             HorizontalAlignment="Stretch"
+             HorizontalAlignment="Stretch" Loaded="UserControl_Loaded"
             >
-    <Grid HorizontalAlignment="Stretch">
+    <Grid x:Name="mainGrid" HorizontalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="35" ></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
@@ -17,6 +17,7 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
+        <Label x:Name="lblLoading" Content="Loading" HorizontalAlignment="Center" Margin="0,80,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Width="Auto" Height="30" HorizontalAlignment="Center">
                 <ComboBox x:Name="cmbFavorite" Width="120" Margin="25,5,5,5" SelectionChanged="cmbFavorite_SelectionChanged"/>

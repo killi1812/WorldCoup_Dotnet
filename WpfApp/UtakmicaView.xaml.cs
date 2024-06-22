@@ -2,52 +2,59 @@
 using FootballData.Data.Models;
 using FootballData.ProjectSettings;
 using System.Text;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace WpfGui;
-
-
 
 /// <summary>
 /// Interaction logic for UtakmicaView.xaml
 /// </summary>
 
-/*
-     The3421,
-    The343,
-    The352,
-    The4231,
-    The4321,
-    The433,
-    The442,
-    The451,
-    The532,
-    The541
- */
 public partial class UtakmicaView : UserControl
 {
     public UtakmicaView()
     {
         InitializeComponent();
-        //api = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
-        api = FootballRepositoryFactory.GetRepository();
-        LoadTeams();
+        api = FootballRepositoryFactory.GetRepository(AppRepo.GetSettings().Values.Repository);
+        //api = FootballRepositoryFactory.GetRepository();
+        //LoadTeams();
     }
 
-    public bool loading = false;
+
+    private void startLoading()
+    {
+        mainGrid.Children.Cast<UIElement>().ToList().ForEach(element =>
+        {
+            element.Visibility = Visibility.Hidden;
+        }
+        );
+        lblLoading.Visibility = Visibility.Visible;
+    }
+    private void stopLoading()
+    {
+        mainGrid.Children.Cast<UIElement>().ToList().ForEach(element =>
+        {
+            element.Visibility = Visibility.Visible;
+        }
+        );
+        lblLoading.Visibility = Visibility.Hidden;
+    }
+
     public async void LoadTeams()
     {
-        loading = true;
+        startLoading();
         try
         {
             teams = await api.GetTeams();
-        }
+            //Thread.Sleep(1000);
+            }
         catch (Exception ex)
         {
             Console.WriteLine(ex);
             return;
         }
-        finally { loading = false; }
+        finally { stopLoading(); }
         cmbFavorite.ItemsSource = teams.Select(t => t.FifaCode);
         var favTeam = AppRepo.GetSettings().Values.FavoritTimeFifaCode;
         if (String.IsNullOrEmpty(favTeam)) return;
@@ -56,6 +63,7 @@ public partial class UtakmicaView : UserControl
 
     private void LoadFavoriteTeam()
     {
+        //TODO load your Favorite team and check for null
         throw new NotImplementedException();
     }
 
@@ -191,6 +199,11 @@ public partial class UtakmicaView : UserControl
         s.Golovi = matches.Where(m => m.HomeTeamCountry == name).Sum(m => m.HomeTeamResult.Goals) + matches.Where(m => m.AwayTeamCountry == name).Sum(m => m.AwayTeamResult.Goals);
         s.Primljeno = matches.Where(m => m.HomeTeamCountry != name).Sum(m => m.HomeTeamResult.Goals) + matches.Where(m => m.AwayTeamCountry != name).Sum(m => m.AwayTeamResult.Goals);
         return s;
+    }
+
+    private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+    {
+        LoadTeams();
     }
 }
 public class Stats

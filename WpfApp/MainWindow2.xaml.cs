@@ -23,14 +23,12 @@ namespace WpfApp
         public MainWindow2()
         {
             InitializeComponent();
-            this.DataContext = main.loading;
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             var settingsWindow = new SettingsWinfow();
             var result = settingsWindow.ShowDialog();
-            main.LoadTeams(); 
         }
     }
 }
