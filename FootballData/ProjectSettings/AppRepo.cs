@@ -1,10 +1,19 @@
 ﻿using FootballData.Data.Models;
+using Newtonsoft.Json;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace FootballData.ProjectSettings
 {
+    public struct Pair<t>
+    {
+        public t Item1;
+        public t Item2;
+        public Pair(t a, t b)
+        {
+            Item1 = a;
+            Item2 = b;
+        }
+    }
     public class Settings
     {
         public string ConfigPath { get; set; }
@@ -18,7 +27,7 @@ namespace FootballData.ProjectSettings
         public List<string> FavoritePlayers { get; set; }
 
         public int Repository { get; set; }
-        public (int, int) Rezolucija { get; set; }
+        public Pair<int> Rezolucija { get; set; }
 
         public string FavoritTimeFifaCode { get; set; }
         public override string ToString()
@@ -78,7 +87,7 @@ namespace FootballData.ProjectSettings
             using StreamReader reader = new(filename);
             var settings = new Settings();
             var stream = reader.BaseStream;
-            settings = JsonSerializer.DeserializeAsync<Settings>(stream).Result;
+            settings = JsonConvert.DeserializeObject<Settings>(reader.ReadToEnd());
             return settings;
         }
 
@@ -87,7 +96,7 @@ namespace FootballData.ProjectSettings
             try
             {
                 await using StreamWriter writer = new(FileName());
-                var json = JsonSerializer.Serialize(Values);
+                var json = JsonConvert.SerializeObject(Values);
                 await writer.WriteAsync(json);
             }
             catch

@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FootballData.ProjectSettings;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WpfGui;
 
 namespace WpfApp
@@ -23,6 +12,23 @@ namespace WpfApp
         public MainWindow2()
         {
             InitializeComponent();
+            if (AppRepo.GetSettings().IsNew)
+            {
+                //TODO open settings
+                var settings = new SettingsWinfow();
+                settings.ShowDialog();
+            }
+            var rez = AppRepo.GetSettings().Values.Rezolucija;
+            if (rez.Item1 == 0)
+            {
+
+                window.WindowState = WindowState.Maximized;
+            }
+            else
+            {
+                this.window.Width = rez.Item1;
+                this.window.Height = rez.Item2;
+            }
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)

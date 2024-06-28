@@ -64,13 +64,13 @@ namespace WpfGui
                 string s = (string)button.Content;
                 if (s == "FullScreen")
                 {
-                    settings.Values.Rezolucija = (0, 0);
+                    settings.Values.Rezolucija = new Pair<int> (0, 0);
                     return;
                 }
                 int first, second;
                 first = int.Parse(s.Split("x")[0]);
                 second = int.Parse(s.Split("x")[1]);
-                settings.Values.Rezolucija = (first, second);
+                settings.Values.Rezolucija = new Pair<int>(first, second);
             }
         }
 
