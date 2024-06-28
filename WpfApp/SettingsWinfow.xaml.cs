@@ -32,9 +32,16 @@ namespace WpfGui
 
             var rez = grpRez.Children;
             var rezolution = settings.Values.Rezolucija;
-            foreach (RadioButton item in rez)
+            if (rezolution.Item1 == 0)
             {
-                item.IsChecked = (string)item.Content == $"{rezolution.Item1}x{rezolution.Item2}";
+                ((RadioButton)rez[0]).IsChecked = true;
+            }
+            else
+            {
+                foreach (RadioButton item in rez)
+                {
+                    item.IsChecked = (string)item.Content == $"{rezolution.Item1}x{rezolution.Item2}";
+                }
             }
         }
 
